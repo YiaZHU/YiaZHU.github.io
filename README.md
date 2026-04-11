@@ -2,7 +2,7 @@
 
 | # | 标题 | 期刊 | 年份 |
 | --- | --- | --- | --- |
-| 1 | Artificial Intelligence-Empowered Embryo Selection for IVF Applications: A Methodological Review | *Applied Sciences (MDPI)* | 2025 |
+| 1 | Artificial Intelligence-Empowered Embryo Selection for IVF Applications: A Methodological Review | *Machine Learning and Knowledge Extraction (MDPI)* | 2025 |
 | 2 | Embryo selection through artificial intelligence versus embryologists: a systematic review | *Human Reproduction Open* | 2023 |
 | 3 | AI in in-vitro fertilization (IVF): A new era of precision and personalization | *J Gynecol Obstet Hum Reprod* | 2025 |
 | 4 | Machine learning approaches for image classification in developmental biology and clinical embryology | *Development* | 2025 |
