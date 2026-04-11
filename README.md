@@ -191,8 +191,8 @@
 └── 全稿审改 + 图表制作 + 期刊选择
 ```
 
-**目标期刊建议**（根据综述定位）：
+**目标期刊（AI建议）**（根据综述定位）：
 
-- 偏临床：*Human Reproduction Update*（IF ~15）, *Fertility & Sterility*
+- 偏临床：*Human Reproduction Update*, *Fertility & Sterility*
 - 偏技术：*Briefings in Bioinformatics*, *Nature Methods*（难度较高）
 - 偏综合：*Development*, *Cell Systems*, *iScience*
