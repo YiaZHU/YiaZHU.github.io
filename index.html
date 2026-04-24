@@ -1,712 +1,795 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>中国历史地理：韩茂莉</title><style>
-/* cspell:disable-file */
-/* webkit printing magic: print all background colors */
-html {
-	-webkit-print-color-adjust: exact;
-}
-* {
-	box-sizing: border-box;
-	-webkit-print-color-adjust: exact;
-}
-
-html,
-body {
-	margin: 0;
-	padding: 0;
-}
-@media only screen {
-	body {
-		margin: 2em auto;
-		max-width: 900px;
-		color: rgb(55, 53, 47);
-	}
-}
-
-body {
-	line-height: 1.5;
-	white-space: pre-wrap;
-}
-
-a,
-a.visited {
-	color: inherit;
-	text-decoration: underline;
-}
-
-.pdf-relative-link-path {
-	font-size: 80%;
-	color: #444;
-}
-
-h1,
-h2,
-h3 {
-	letter-spacing: -0.01em;
-	line-height: 1.2;
-	font-weight: 600;
-	margin-bottom: 0;
-}
-
-/* Override strong tags inside headings to maintain consistent weight */
-h1 strong,
-h2 strong,
-h3 strong {
-	font-weight: 600;
-}
-
-.page-title {
-	font-size: 2.5rem;
-	font-weight: 700;
-	margin-top: 0;
-	margin-bottom: 0.75em;
-}
-
-h1 {
-	font-size: 1.875rem;
-	margin-top: 1.875rem;
-}
-
-h2 {
-	font-size: 1.5rem;
-	margin-top: 1.5rem;
-}
-
-h3 {
-	font-size: 1.25rem;
-	margin-top: 1.25rem;
-}
-
-.source {
-	border: 1px solid #ddd;
-	border-radius: 3px;
-	padding: 1.5em;
-	word-break: break-all;
-}
-
-.callout {
-	border-radius: 10px;
-	padding: 1rem;
-}
-
-figure {
-	margin: 1.25em 0;
-	page-break-inside: avoid;
-}
-
-figcaption {
-	opacity: 0.5;
-	font-size: 85%;
-	margin-top: 0.5em;
-}
-
-mark {
-	background-color: transparent;
-}
-
-.indented {
-	padding-left: 1.5em;
-}
-
-hr {
-	background: transparent;
-	display: block;
-	width: 100%;
-	height: 1px;
-	visibility: visible;
-	border: none;
-	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
-}
-
-img {
-	max-width: 100%;
-}
-
-@media only print {
-	img {
-		max-height: 100vh;
-		object-fit: contain;
-	}
-}
-
-@page {
-	margin: 1in;
-}
-
-.collection-content {
-	font-size: 0.875rem;
-}
-
-.collection-content td {
-	white-space: pre-wrap;
-	word-break: break-word;
-}
-
-.column-list {
-	display: flex;
-	gap: 46px;
-}
-
-.column {
-	min-width: 0;
-	overflow: hidden;
-}
-
-.column > *:first-child {
-	margin-top: 0;
-}
-
-.table_of_contents-item {
-	display: block;
-	font-size: 0.875rem;
-	line-height: 1.3;
-	padding: 0.125rem;
-}
-
-.table_of_contents-indent-1 {
-	margin-left: 1.5rem;
-}
-
-.table_of_contents-indent-2 {
-	margin-left: 3rem;
-}
-
-.table_of_contents-indent-3 {
-	margin-left: 4.5rem;
-}
-
-.table_of_contents-link {
-	text-decoration: none;
-	opacity: 0.7;
-	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
-}
-
-table,
-th,
-td {
-	border: 1px solid rgba(55, 53, 47, 0.09);
-	border-collapse: collapse;
-}
-
-table {
-	border-left: none;
-	border-right: none;
-}
-
-th,
-td {
-	font-weight: normal;
-	padding: 0.25em 0.5em;
-	line-height: 1.5;
-	min-height: 1.5em;
-	text-align: left;
-}
-
-th {
-	color: rgba(55, 53, 47, 0.6);
-}
-
-ol,
-ul {
-	margin: 0;
-	margin-block-start: 0.6em;
-	margin-block-end: 0.6em;
-}
-
-li > ol:first-child,
-li > ul:first-child {
-	margin-block-start: 0.6em;
-}
-
-ul > li {
-	list-style: disc;
-}
-
-ul.to-do-list {
-	padding-inline-start: 0;
-}
-
-ul.to-do-list > li {
-	list-style: none;
-}
-
-.to-do-children-checked {
-	text-decoration: line-through;
-	opacity: 0.375;
-}
-
-ul.toggle > li {
-	list-style: none;
-}
-
-ul {
-	padding-inline-start: 1.7em;
-}
-
-ul > li {
-	padding-left: 0.1em;
-}
-
-ol {
-	padding-inline-start: 1.6em;
-}
-
-ol > li {
-	padding-left: 0.2em;
-}
-
-.mono ol {
-	padding-inline-start: 2em;
-}
-
-.mono ol > li {
-	text-indent: -0.4em;
-}
-
-.toggle {
-	padding-inline-start: 0em;
-	list-style-type: none;
-}
-
-/* Indent toggle children */
-.toggle > li > details {
-	padding-left: 1.7em;
-}
-
-.toggle > li > details > summary {
-	margin-left: -1.1em;
-}
-
-.selected-value {
-	display: inline-block;
-	padding: 0 0.5em;
-	background: rgba(206, 205, 202, 0.5);
-	border-radius: 3px;
-	margin-right: 0.5em;
-	margin-top: 0.3em;
-	margin-bottom: 0.3em;
-	white-space: nowrap;
-}
-
-.collection-title {
-	display: inline-block;
-	margin-right: 1em;
-}
-
-.page-description {
-	margin-bottom: 2em;
-}
-
-.simple-table {
-	margin-top: 1em;
-	font-size: 0.875rem;
-	empty-cells: show;
-}
-.simple-table td {
-	height: 29px;
-	min-width: 120px;
-}
-
-.simple-table th {
-	height: 29px;
-	min-width: 120px;
-}
-
-.simple-table-header-color {
-	background: rgb(247, 246, 243);
-	color: black;
-}
-.simple-table-header {
-	font-weight: 500;
-}
-
-time {
-	opacity: 0.5;
-}
-
-.icon {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	max-width: 1.2em;
-	max-height: 1.2em;
-	text-decoration: none;
-	vertical-align: text-bottom;
-	margin-right: 0.5em;
-}
-
-img.icon {
-	border-radius: 3px;
-}
-
-.callout img.notion-static-icon {
-	width: 1em;
-	height: 1em;
-}
-
-.callout p {
-	margin: 0;
-}
-
-.callout h1,
-.callout h2,
-.callout h3 {
-	margin: 0 0 0.6rem;
-}
-
-.user-icon {
-	width: 1.5em;
-	height: 1.5em;
-	border-radius: 100%;
-	margin-right: 0.5rem;
-}
-
-.user-icon-inner {
-	font-size: 0.8em;
-}
-
-.text-icon {
-	border: 1px solid #000;
-	text-align: center;
-}
-
-.page-cover-image {
-	display: block;
-	object-fit: cover;
-	width: 100%;
-	max-height: 30vh;
-}
-
-.page-header-icon {
-	font-size: 3rem;
-	margin-bottom: 1rem;
-}
-
-.page-header-icon-with-cover {
-	margin-top: -0.72em;
-	margin-left: 0.07em;
-}
-
-.page-header-icon img {
-	border-radius: 3px;
-}
-
-.link-to-page {
-	margin: 1em 0;
-	padding: 0;
-	border: none;
-	font-weight: 500;
-}
-
-p > .user {
-	opacity: 0.5;
-}
-
-td > .user,
-td > time {
-	white-space: nowrap;
-}
-
-input[type="checkbox"] {
-	transform: scale(1.5);
-	margin-right: 0.6em;
-	vertical-align: middle;
-}
-
-p {
-	margin-top: 0.5em;
-	margin-bottom: 0.5em;
-}
-
-.image {
-	border: none;
-	margin: 1.5em 0;
-	padding: 0;
-	border-radius: 0;
-	text-align: center;
-}
-
-.code,
-code {
-	background: rgba(135, 131, 120, 0.15);
-	border-radius: 3px;
-	padding: 0.2em 0.4em;
-	border-radius: 3px;
-	font-size: 85%;
-	tab-size: 2;
-}
-
-code {
-	color: #eb5757;
-}
-
-.code {
-	padding: 1.5em 1em;
-}
-
-.code-wrap {
-	white-space: pre-wrap;
-	word-break: break-all;
-}
-
-.code > code {
-	background: none;
-	padding: 0;
-	font-size: 100%;
-	color: inherit;
-}
-
-blockquote {
-	font-size: 1em;
-	margin: 1em 0;
-	padding-left: 1em;
-	border-left: 3px solid rgb(55, 53, 47);
-}
-
-blockquote.quote-large {
-	font-size: 1.25em;
-}
-
-.bookmark {
-	text-decoration: none;
-	max-height: 8em;
-	padding: 0;
-	display: flex;
-	width: 100%;
-	align-items: stretch;
-}
-
-.bookmark-title {
-	font-size: 0.85em;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	height: 1.75em;
-	white-space: nowrap;
-}
-
-.bookmark-text {
-	display: flex;
-	flex-direction: column;
-}
-
-.bookmark-info {
-	flex: 4 1 180px;
-	padding: 12px 14px 14px;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-}
-
-.bookmark-image {
-	width: 33%;
-	flex: 1 1 180px;
-	display: block;
-	position: relative;
-	object-fit: cover;
-	border-radius: 1px;
-}
-
-.bookmark-description {
-	color: rgba(55, 53, 47, 0.6);
-	font-size: 0.75em;
-	overflow: hidden;
-	max-height: 4.5em;
-	word-break: break-word;
-}
-
-.bookmark-href {
-	font-size: 0.75em;
-	margin-top: 0.25em;
-}
-
-.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
-.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
-.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
-.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
-.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
-.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
-.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
-.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
-.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
-.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
-.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
-.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
-.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
-.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
-.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
-.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
-.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
-.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
-.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
-.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
-.highlight-default {
-	color: rgba(44, 44, 43, 1);
-}
-.highlight-gray {
-	color: rgba(125, 122, 117, 1);
-	fill: rgba(125, 122, 117, 1);
-}
-.highlight-brown {
-	color: rgba(159, 118, 90, 1);
-	fill: rgba(159, 118, 90, 1);
-}
-.highlight-orange {
-	color: rgba(210, 123, 45, 1);
-	fill: rgba(210, 123, 45, 1);
-}
-.highlight-yellow {
-	color: rgba(203, 148, 52, 1);
-	fill: rgba(203, 148, 52, 1);
-}
-.highlight-teal {
-	color: rgba(80, 148, 110, 1);
-	fill: rgba(80, 148, 110, 1);
-}
-.highlight-blue {
-	color: rgba(56, 125, 201, 1);
-	fill: rgba(56, 125, 201, 1);
-}
-.highlight-purple {
-	color: rgba(154, 107, 180, 1);
-	fill: rgba(154, 107, 180, 1);
-}
-.highlight-pink {
-	color: rgba(193, 76, 138, 1);
-	fill: rgba(193, 76, 138, 1);
-}
-.highlight-red {
-	color: rgba(207, 81, 72, 1);
-	fill: rgba(207, 81, 72, 1);
-}
-.highlight-default_background {
-	color: rgba(44, 44, 43, 1);
-}
-.highlight-gray_background {
-	background: rgba(42, 28, 0, 0.07);
-}
-.highlight-brown_background {
-	background: rgba(139, 46, 0, 0.086);
-}
-.highlight-orange_background {
-	background: rgba(224, 101, 1, 0.129);
-}
-.highlight-yellow_background {
-	background: rgba(211, 168, 0, 0.137);
-}
-.highlight-teal_background {
-	background: rgba(0, 100, 45, 0.09);
-}
-.highlight-blue_background {
-	background: rgba(0, 124, 215, 0.094);
-}
-.highlight-purple_background {
-	background: rgba(102, 0, 178, 0.078);
-}
-.highlight-pink_background {
-	background: rgba(197, 0, 93, 0.086);
-}
-.highlight-red_background {
-	background: rgba(223, 22, 0, 0.094);
-}
-.block-color-default {
-	color: inherit;
-	fill: inherit;
-}
-.block-color-gray {
-	color: rgba(125, 122, 117, 1);
-	fill: rgba(125, 122, 117, 1);
-}
-.block-color-brown {
-	color: rgba(159, 118, 90, 1);
-	fill: rgba(159, 118, 90, 1);
-}
-.block-color-orange {
-	color: rgba(210, 123, 45, 1);
-	fill: rgba(210, 123, 45, 1);
-}
-.block-color-yellow {
-	color: rgba(203, 148, 52, 1);
-	fill: rgba(203, 148, 52, 1);
-}
-.block-color-teal {
-	color: rgba(80, 148, 110, 1);
-	fill: rgba(80, 148, 110, 1);
-}
-.block-color-blue {
-	color: rgba(56, 125, 201, 1);
-	fill: rgba(56, 125, 201, 1);
-}
-.block-color-purple {
-	color: rgba(154, 107, 180, 1);
-	fill: rgba(154, 107, 180, 1);
-}
-.block-color-pink {
-	color: rgba(193, 76, 138, 1);
-	fill: rgba(193, 76, 138, 1);
-}
-.block-color-red {
-	color: rgba(207, 81, 72, 1);
-	fill: rgba(207, 81, 72, 1);
-}
-.block-color-default_background {
-	color: inherit;
-	fill: inherit;
-}
-.block-color-gray_background {
-	background: rgba(240, 239, 237, 1);
-}
-.block-color-brown_background {
-	background: rgba(245, 237, 233, 1);
-}
-.block-color-orange_background {
-	background: rgba(251, 235, 222, 1);
-}
-.block-color-yellow_background {
-	background: rgba(249, 243, 220, 1);
-}
-.block-color-teal_background {
-	background: rgba(232, 241, 236, 1);
-}
-.block-color-blue_background {
-	background: rgba(229, 242, 252, 1);
-}
-.block-color-purple_background {
-	background: rgba(243, 235, 249, 1);
-}
-.block-color-pink_background {
-	background: rgba(250, 233, 241, 1);
-}
-.block-color-red_background {
-	background: rgba(252, 233, 231, 1);
-}
-.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
-.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
-.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
-.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
-.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
-.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
-.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
-.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
-.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
-.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
-
-.checkbox {
-	display: inline-flex;
-	vertical-align: text-bottom;
-	width: 16;
-	height: 16;
-	background-size: 16px;
-	margin-left: 2px;
-	margin-right: 5px;
-}
-
-.checkbox-on {
-	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
-}
-
-.checkbox-off {
-	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
-}
-	
-</style></head><body><article id="241790c9-45e8-8060-b3f3-ef82496de767" class="page sans"><header><img class="page-cover-image" src="https://www.notion.so/images/page-cover/solid_beige.png" style="object-position:center 40%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon notion-static-icon" src="https://www.notion.so/icons/departures_purple.svg"/></div><h1 class="page-title" dir="auto">中国历史地理：韩茂莉</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><div style="display:contents" dir="auto"><p id="241790c9-45e8-8067-ab19-db5ab499e9ed" class="">
-</p></div><div style="display:contents" dir="ltr"><figure id="241790c9-45e8-81ac-b1fa-e082b25cb166" class="block-color-default_background link-to-page"><a href="03%20%E7%AC%AC%E4%B8%80%E8%AE%B2%E2%80%94%E2%80%94%E4%B8%AD%E5%9B%BD%E5%8E%86%E5%8F%B2%E5%9C%B0%E7%90%86%20241790c945e881acb1fae082b25cb166.html"><span class="icon">😃</span>03 第一讲——中国历史地理</a></figure></div><div style="display:contents" dir="ltr"><figure id="241790c9-45e8-8185-b661-ef7e7a0aa3c5" class="block-color-default_background link-to-page"><a href="04%20%E7%AC%AC%E4%BA%8C%E8%AE%B2%E2%80%94%E2%80%94%E7%A9%BA%E9%97%B4%E4%B8%8E%E6%94%BF%E6%9D%83%20241790c945e88185b661ef7e7a0aa3c5.html"><span class="icon">😃</span>04 第二讲——空间与政权</a></figure></div><div style="display:contents" dir="ltr"><figure id="241790c9-45e8-80c6-bff0-d4a0ffa5fe4a" class="block-color-default_background link-to-page"><a href="05%20%E7%AC%AC%E4%BA%8C%E8%AE%B2%E2%80%94%E2%80%94%E5%9B%9B%20%E5%94%90%E5%AE%8B%E5%85%83%E6%98%8E%20241790c945e880c6bff0d4a0ffa5fe4a.html"><span class="icon">😃</span>05 第二讲——四 唐宋元明</a></figure></div><div style="display:contents" dir="ltr"><figure id="241790c9-45e8-8150-8fb7-c8d1dcc09aaf" class="link-to-page"><a href="06%20%E7%AC%AC%E4%BA%8C%E8%8A%82+%E7%AC%AC%E4%B8%89%E8%8A%82%E9%83%A8%E5%88%86%20241790c945e881508fb7c8d1dcc09aaf.html"><span class="icon">😃</span>06 第二节+第三节部分</a></figure></div><div style="display:contents" dir="ltr"><figure id="241790c9-45e8-8135-af0d-fc0eb344a656" class="link-to-page"><a href="07%20%E7%AC%AC%E4%B8%89%E8%AE%B2%20%E5%8D%83%E5%8F%A4%E8%B6%B3%E9%9F%B3%E2%80%94%E2%80%94%E5%8F%A4%E4%BB%A3%E4%BA%A4%E9%80%9A%E9%81%93%E8%B7%AF%E4%B8%8E%E5%86%9B%E4%BA%8B%E3%80%81%E6%96%87%E5%8C%96%E3%80%81%E7%BB%8F%E6%B5%8E%20241790c945e88135af0dfc0eb344a656.html"><span class="icon">😀</span>07 第三讲 千古足音——古代交通道路与军事、文化、经济</a></figure></div><div style="display:contents" dir="ltr"><figure id="241790c9-45e8-81ae-87cc-d66d06d51510" class="link-to-page"><a href="08%20%E7%AC%AC%E4%BA%8C%E8%8A%82%20%E5%B7%9D%E5%B3%A1%E4%BA%A4%E9%80%9A%E4%B8%8E%E5%86%9B%E4%BA%8B%E5%9C%B0%E7%90%86%20241790c945e881ae87ccd66d06d51510.html"><span class="icon">😀</span>08 第二节 川峡交通与军事地理</a></figure></div><div style="display:contents" dir="ltr"><figure id="241790c9-45e8-810f-82b3-ea211e858442" class="link-to-page"><a href="09%20%E7%AC%AC%E5%9B%9B%E8%8A%82%20%E4%B8%9D%E7%BB%B8%E4%B9%8B%E8%B7%AF%20241790c945e8810f82b3ea211e858442.html"><span class="icon">😀</span>09 第四节 丝绸之路</a></figure></div><div style="display:contents" dir="ltr"><figure id="241790c9-45e8-8136-92aa-f59aedcd7b1b" class="link-to-page"><a href="11%20%E7%AC%AC%E5%9B%9B%E8%AE%B2%20%E6%B1%9F%E6%B2%B3%E4%B9%8B%E5%8F%98%E2%80%94%E2%80%94%E6%B2%B3%E6%B9%96%E6%B0%B4%E9%81%93%E5%8F%98%E8%BF%81%20241790c945e8813692aaf59aedcd7b1b.html"><span class="icon">😀</span>11 第四讲 江河之变——河湖水道变迁</a></figure></div><div style="display:contents" dir="ltr"><figure id="241790c9-45e8-8135-84c4-dd0d7bf2cef0" class="link-to-page"><a href="12%20%E7%AC%AC%E4%BA%8C%E8%8A%82%20%E5%8E%86%E5%8F%B2%E4%B8%8A%E9%95%BF%E6%B1%9F%E4%B8%AD%E6%B5%81%E6%B2%B3%E9%81%93%E4%B8%8E%E4%B8%BB%E8%A6%81%E6%B9%96%E6%B3%8A%E7%9A%84%E5%8F%98%E8%BF%81%20241790c945e8813584c4dd0d7bf2cef0.html"><span class="icon">😀</span>12 第二节 历史上长江中流河道与主要湖泊的变迁</a></figure></div><div style="display:contents" dir="ltr"><figure id="241790c9-45e8-81b4-9ef2-f1aec72cfdc3" class="link-to-page"><a href="14%20%E7%AC%AC%E4%BA%94%E8%AE%B2%20%E5%9B%BD%E8%84%89%E6%B0%91%E7%94%9F%E2%80%94%E2%80%94%E5%86%9C%E4%B8%9A%E7%9A%84%E7%A9%BA%E9%97%B4%E5%8E%86%E7%A8%8B%20241790c945e881b49ef2f1aec72cfdc3.html"><span class="icon">😃</span>14 第五讲 国脉民生——农业的空间历程</a></figure></div><div style="display:contents" dir="ltr"><figure id="241790c9-45e8-81d1-b40c-eb7fd72308e1" class="link-to-page"><a href="15%20%E7%AC%AC%E4%BA%94%E7%AB%A0%20%E5%9B%BD%E8%84%89%E6%B0%91%E7%94%9F%E2%80%94%E2%80%94%E5%86%9C%E4%B8%9A%E7%9A%84%E7%A9%BA%E9%97%B4%E5%8E%86%E7%A8%8B%20241790c945e881d1b40ceb7fd72308e1.html"><span class="icon">😀</span>15 第五章 国脉民生——农业的空间历程</a></figure></div><div style="display:contents" dir="ltr"><figure id="241790c9-45e8-811c-8ef3-fedd310231ce" class="link-to-page"><a href="2024%E5%B9%B4%E6%98%A5%20%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0%E6%95%B4%E7%90%86%20241790c945e8811c8ef3fedd310231ce.html"><span class="icon">😃</span>2024年春 期末复习整理</a></figure></div><div style="display:contents" dir="auto"><p id="241790c9-45e8-80cf-ab72-ff27780d095d" class="">
-</p></div></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GitHub 个人主页 · 北大医学</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:      #faf8f5;
+      --bg2:     #f3f0eb;
+      --bg3:     #ece8e1;
+      --border:  #ddd8cf;
+      --ink:     #2c2416;
+      --ink2:    #6b5e4a;
+      --ink3:    #9c8e7a;
+      --red:     #8b1a1a;     /* 北大燕园红 */
+      --red2:    #b5282828;
+      --teal:    #1a5c6e;
+      --gold:    #a07030;
+      --green:   #2d6a4f;
+      --shadow:  rgba(44,36,22,.08);
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Noto Sans SC', sans-serif;
+      font-weight: 400;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    /* 纸纹背景 */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 0;
+    }
+
+    /* 顶部装饰线 */
+    .top-stripe {
+      height: 4px;
+      background: linear-gradient(90deg, var(--red) 0%, var(--gold) 50%, var(--red) 100%);
+    }
+
+    .page { max-width: 860px; margin: 0 auto; padding: 52px 28px 80px; position: relative; z-index: 1; }
+
+    /* ═══ HERO ═══ */
+    .hero {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 36px;
+      align-items: flex-start;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 44px;
+      animation: rise .7s ease both;
+    }
+
+    .avatar {
+      width: 130px; height: 130px;
+      border-radius: 50%;
+      border: 3px solid var(--border);
+      background: var(--bg3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 52px;
+      overflow: hidden;
+      box-shadow: 0 4px 18px var(--shadow);
+      transition: border-color .3s;
+      flex-shrink: 0;
+    }
+    .avatar:hover { border-color: var(--red); }
+
+    .name-block { padding-top: 4px; }
+
+    .name {
+      font-family: 'Lora', serif;
+      font-size: 2.1rem;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.15;
+      margin-bottom: 2px;
+    }
+
+    .name-sub {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .85rem;
+      color: var(--red);
+      margin-bottom: 14px;
+      letter-spacing: .04em;
+    }
+
+    .bio {
+      font-size: .93rem;
+      color: var(--ink2);
+      line-height: 1.8;
+      margin-bottom: 16px;
+      max-width: 500px;
+    }
+
+    .meta-row {
+      display: flex; flex-wrap: wrap; gap: 12px 20px;
+      margin-bottom: 18px;
+    }
+
+    .meta-item {
+      display: flex; align-items: center; gap: 5px;
+      font-size: .82rem; color: var(--ink3);
+    }
+    .meta-item svg { opacity: .65; flex-shrink: 0; }
+
+    .tag-row { display: flex; flex-wrap: wrap; gap: 7px; }
+
+    .tag {
+      font-size: .74rem;
+      padding: 3px 10px;
+      border-radius: 20px;
+      border: 1px solid;
+      font-family: 'Noto Sans SC', sans-serif;
+      font-weight: 500;
+    }
+    .tag-red    { color: var(--red);   border-color: rgba(139,26,26,.3);  background: rgba(139,26,26,.06); }
+    .tag-teal   { color: var(--teal);  border-color: rgba(26,92,110,.3);  background: rgba(26,92,110,.06); }
+    .tag-gold   { color: var(--gold);  border-color: rgba(160,112,48,.3); background: rgba(160,112,48,.06); }
+    .tag-green  { color: var(--green); border-color: rgba(45,106,79,.3);  background: rgba(45,106,79,.06); }
+
+    /* 填空标记 */
+    .fill {
+      display: inline-flex; align-items: center; gap: 4px;
+      background: rgba(180,40,40,.09);
+      border: 1px dashed rgba(139,26,26,.4);
+      border-radius: 4px;
+      padding: 1px 7px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .8rem;
+      color: #9b2c2c;
+      white-space: nowrap;
+    }
+
+    /* ═══ SECTION ═══ */
+    .section { margin-bottom: 44px; animation: rise .7s ease both; }
+    .section:nth-child(2) { animation-delay: .08s; }
+    .section:nth-child(3) { animation-delay: .14s; }
+    .section:nth-child(4) { animation-delay: .20s; }
+    .section:nth-child(5) { animation-delay: .26s; }
+    .section:nth-child(6) { animation-delay: .32s; }
+
+    .sec-head {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .sec-icon {
+      width: 28px; height: 28px;
+      background: var(--red);
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .sec-icon svg { color: #fff; }
+
+    .sec-title {
+      font-family: 'Lora', serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--ink);
+      flex: 1;
+    }
+
+    .sec-line {
+      flex: 1; height: 1px; background: var(--border);
+    }
+
+    /* ═══ 时间线（教育 / 科研 / 奖项） ═══ */
+    .timeline { position: relative; padding-left: 24px; }
+
+    .timeline::before {
+      content: ''; position: absolute; left: 6px; top: 6px; bottom: 6px;
+      width: 1px; background: var(--border);
+    }
+
+    .tl-item {
+      position: relative;
+      margin-bottom: 28px;
+      padding: 18px 20px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      box-shadow: 0 2px 8px var(--shadow);
+      transition: box-shadow .25s, transform .25s;
+    }
+    .tl-item:hover { box-shadow: 0 6px 20px var(--shadow); transform: translateX(2px); }
+    .tl-item:last-child { margin-bottom: 0; }
+
+    .tl-item::before {
+      content: ''; position: absolute; left: -21px; top: 22px;
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--red); border: 2px solid var(--bg);
+      box-shadow: 0 0 0 2px var(--red);
+    }
+
+    .tl-header {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      gap: 12px; margin-bottom: 6px;
+    }
+
+    .tl-title {
+      font-weight: 600; font-size: .95rem; color: var(--ink);
+      line-height: 1.4;
+    }
+
+    .tl-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .75rem; color: var(--ink3);
+      white-space: nowrap; padding-top: 2px;
+      flex-shrink: 0;
+    }
+
+    .tl-sub {
+      font-size: .83rem; color: var(--teal);
+      margin-bottom: 8px; font-weight: 500;
+    }
+
+    .tl-body {
+      font-size: .85rem; color: var(--ink2); line-height: 1.75;
+    }
+
+    .tl-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+
+    /* ═══ 奖项卡片 ═══ */
+    .awards-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .award-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 18px;
+      display: flex; gap: 14px; align-items: flex-start;
+      box-shadow: 0 2px 8px var(--shadow);
+      transition: box-shadow .25s, transform .25s;
+    }
+    .award-card:hover { box-shadow: 0 6px 20px var(--shadow); transform: translateY(-2px); }
+
+    .award-medal {
+      width: 36px; height: 36px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; flex-shrink: 0;
+    }
+    .medal-gold   { background: rgba(160,112,48,.12); }
+    .medal-silver { background: rgba(100,100,120,.1); }
+    .medal-bronze { background: rgba(139,80,50,.1); }
+    .medal-blue   { background: rgba(26,92,110,.1); }
+
+    .award-info { flex: 1; }
+
+    .award-name {
+      font-weight: 600; font-size: .88rem; color: var(--ink); line-height: 1.35;
+      margin-bottom: 3px;
+    }
+
+    .award-org {
+      font-size: .78rem; color: var(--ink3);
+    }
+
+    .award-year {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .72rem; color: var(--red);
+      background: rgba(139,26,26,.07);
+      padding: 1px 6px; border-radius: 4px;
+      display: inline-block; margin-top: 5px;
+    }
+
+    /* ═══ 技能条 ═══ */
+    .skills-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 10px 32px;
+    }
+
+    .skill-item { margin-bottom: 4px; }
+
+    .skill-head {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 5px;
+    }
+
+    .skill-name { font-size: .83rem; color: var(--ink2); font-weight: 500; }
+    .skill-pct  { font-family: 'JetBrains Mono', monospace; font-size: .72rem; color: var(--ink3); }
+
+    .skill-bar {
+      height: 5px; background: var(--bg3); border-radius: 4px; overflow: hidden;
+    }
+
+    .skill-fill {
+      height: 100%; border-radius: 4px;
+      background: linear-gradient(90deg, var(--red), var(--gold));
+      animation: grow 1s .4s ease both;
+    }
+
+    @keyframes grow {
+      from { width: 0 !important; }
+    }
+
+    /* ═══ 爱好 ═══ */
+    .hobby-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+    }
+
+    .hobby-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px 16px;
+      text-align: center;
+      box-shadow: 0 2px 8px var(--shadow);
+      transition: box-shadow .25s, transform .25s;
+    }
+    .hobby-card:hover { box-shadow: 0 6px 20px var(--shadow); transform: translateY(-3px); }
+
+    .hobby-icon { font-size: 26px; margin-bottom: 8px; display: block; }
+
+    .hobby-name {
+      font-size: .88rem; font-weight: 600; color: var(--ink); margin-bottom: 5px;
+    }
+
+    .hobby-desc { font-size: .78rem; color: var(--ink3); line-height: 1.6; }
+
+    /* ═══ 日常分享 ═══ */
+    .posts-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+    }
+
+    .post-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px 20px;
+      box-shadow: 0 2px 8px var(--shadow);
+      transition: box-shadow .25s, transform .25s;
+      cursor: pointer;
+    }
+    .post-card:hover { box-shadow: 0 6px 20px var(--shadow); transform: translateY(-2px); }
+
+    .post-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .72rem; color: var(--ink3); margin-bottom: 8px;
+    }
+
+    .post-title {
+      font-family: 'Lora', serif;
+      font-size: .95rem; font-weight: 600; color: var(--ink);
+      line-height: 1.4; margin-bottom: 8px;
+    }
+
+    .post-excerpt {
+      font-size: .8rem; color: var(--ink2); line-height: 1.7;
+    }
+
+    .post-tag {
+      display: inline-block;
+      font-size: .68rem;
+      padding: 2px 7px; border-radius: 12px;
+      margin-top: 10px;
+      font-weight: 500;
+    }
+
+    /* ═══ 联系 ═══ */
+    .contact-row { display: flex; flex-wrap: wrap; gap: 10px; }
+
+    .contact-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #fff; border: 1px solid var(--border);
+      border-radius: 8px; padding: 10px 18px;
+      font-size: .86rem; color: var(--ink2);
+      text-decoration: none;
+      box-shadow: 0 1px 4px var(--shadow);
+      transition: all .2s;
+      cursor: pointer;
+    }
+    .contact-btn:hover {
+      border-color: var(--red); color: var(--red);
+      box-shadow: 0 4px 14px var(--shadow);
+      transform: translateY(-1px);
+    }
+
+    /* ═══ Footer ═══ */
+    .footer {
+      text-align: center;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+      font-size: .78rem; color: var(--ink3);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* ═══ 动画 ═══ */
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ═══ 响应式 ═══ */
+    @media (max-width: 640px) {
+      .hero { grid-template-columns: 1fr; }
+      .avatar { margin: 0 auto; }
+      .awards-grid, .skills-grid, .posts-grid { grid-template-columns: 1fr; }
+      .hobby-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="top-stripe"></div>
+
+<div class="page">
+
+  <!-- ══ HERO ══ -->
+  <div class="hero">
+    <div class="avatar">
+      <!-- 替换为：<img src="头像URL" style="width:100%;height:100%;object-fit:cover;border-radius:50%"> -->
+      🎓
+    </div>
+
+    <div class="name-block">
+      <div class="name"><span class="fill">✏ 朱毅煊</span></div>
+      <div class="name-sub">@ <span class="fill">your-github-username</span></div>
+
+      <div class="bio">
+        北京大学基础医学院 2024 级临床医学（八年制）本科生。
+        热爱临床医学、金融数学、胚胎发育与神经科学，探索计算科学与临床研究的交叉地带。
+        <span class="fill">✏ 永远相信美好的事情即将发生。</span>
+      </div>
+
+      <div class="meta-row">
+        <div class="meta-item">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M1.5 14.25c0 .138.112.25.25.25H4v-1.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 .75.75v1.25h2.25a.25.25 0 0 0 .25-.25V1.75a.25.25 0 0 0-.25-.25h-8.5a.25.25 0 0 0-.25.25Z"/></svg>
+          北京大学基础医学院
+        </div>
+        <div class="meta-item">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="m12.596 11.596-3.535 3.536a1.5 1.5 0 0 1-2.122 0l-3.535-3.536a6.5 6.5 0 1 1 9.192-9.193 6.5 6.5 0 0 1 0 9.193Z"/></svg>
+          北京，中国
+        </div>
+        <div class="meta-item">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0Z"/></svg>
+          <a href="#" style="color:var(--teal); text-decoration:none;">
+            <span class="fill">✏ 信息标签</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="tag-row">
+        <span class="tag tag-red">🏥 临床医学（八年制）</span>
+        <span class="tag tag-teal">📊 胚胎发育研究</span>
+        <span class="tag tag-gold">📐 数学爱好者</span>
+        <span class="tag tag-green">🔬 神经科学爱好者</span>
+        <span class="tag tag-teal"><span class="fill">—…………</span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ 教育经历 ══ -->
+  <div class="section">
+    <div class="sec-head">
+      <div class="sec-icon">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="white"><path d="M8 .5a.5.5 0 0 1 .447.276L10.77 5H15a.5.5 0 0 1 .367.162l.001.001a.5.5 0 0 1 .071.576l-3.5 7A.5.5 0 0 1 11.5 13H4.5a.5.5 0 0 1-.438-.261l-3.5-7A.5.5 0 0 1 1 5h4.23L7.553.776A.5.5 0 0 1 8 .5z"/></svg>
+      </div>
+      <div class="sec-title">教育经历</div>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-header">
+          <div class="tl-title">北京大学 · 基础医学院</div>
+          <div class="tl-date">2024.09 — 2032（预计）</div>
+        </div>
+        <div class="tl-sub">临床医学（八年制）本科 → 博士连读</div>
+        <div class="tl-body">
+          主修临床医学核心课程，辅修生物信息学与数学建模相关方向。
+          <span class="fill">✏ 补充：GPA / 排名（选填）、特色课程、导师姓名（如有）等</span>
+        </div>
+        <div class="tl-tags">
+          <span class="tag tag-red">临床医学</span>
+          <span class="tag tag-teal">生理学</span>
+          <span class="tag tag-gold">生物化学</span>
+          <span class="tag tag-green"><span class="fill">✏ 添加课程标签</span></span>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-header">
+          <div class="tl-title"><span class="fill">✏ 高中 / 竞赛学校名称</span></div>
+          <div class="tl-date"><span class="fill">✏ 入学年 — 毕业年</span></div>
+        </div>
+        <div class="tl-sub"><span class="fill">✏ 理科班 / 竞赛班 / 国际部</span></div>
+        <div class="tl-body">
+          <span class="fill">✏ 高中期间的亮点，例如：参加数学竞赛、生物竞赛，以高考 xxx 分考入北大</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ 科研经历 ══ -->
+  <div class="section">
+    <div class="sec-head">
+      <div class="sec-icon">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="white"><path d="M14.5 3a.5.5 0 0 1-.5.5h-1v8.5a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V3.5H2a.5.5 0 0 1 0-1h12a.5.5 0 0 1 .5.5zM4.118 4 4 4.059V12h8V4.059L11.882 4H4.118zM5.5 5.5a.5.5 0 0 1 1 0v5a.5.5 0 0 1-1 0v-5zm3 0a.5.5 0 0 1 1 0v5a.5.5 0 0 1-1 0v-5z"/></svg>
+      </div>
+      <div class="sec-title">科研经历</div>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-header">
+          <div class="tl-title"><span class="fill">✏ 实验室 / 课题组名称</span>（北京大学）</div>
+          <div class="tl-date"><span class="fill">✏ 2024.xx —</span> 至今</div>
+        </div>
+        <div class="tl-sub">本科科研助理 · <span class="fill">✏ 导师姓名</span> 教授课题组</div>
+        <div class="tl-body">
+          <span class="fill">✏ 描述研究方向，例如：聚焦椎间盘退变（IVDD）中铁死亡机制，探索 L-BAIBA 通过 AMPK/SLC40A1 轴延缓软骨终板退变的分子通路。</span>
+          <br><br>
+          主要工作：细胞培养（<span class="fill">✏ 细胞系</span>）、Western Blot、qPCR、流式细胞术、小鼠动物模型构建。
+        </div>
+        <div class="tl-tags">
+          <span class="tag tag-red"><span class="fill">✏ 研究关键词1</span></span>
+          <span class="tag tag-teal"><span class="fill">✏ 研究关键词2</span></span>
+          <span class="tag tag-gold">细胞生物学</span>
+          <span class="tag tag-green">动物实验</span>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-header">
+          <div class="tl-title"><span class="fill">✏ 第二段科研 / 课外学术项目（如有）</span></div>
+          <div class="tl-date"><span class="fill">✏ 时间段</span></div>
+        </div>
+        <div class="tl-sub"><span class="fill">✏ 角色 · 负责人 / 合作单位</span></div>
+        <div class="tl-body">
+          <span class="fill">✏ 研究内容描述。如无第二段科研，可将此卡片改为"参与的学术活动 / 学术报告"</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ 奖项荣誉 ══ -->
+  <div class="section">
+    <div class="sec-head">
+      <div class="sec-icon">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="white"><path d="M2.5.5A.5.5 0 0 1 3 0h10a.5.5 0 0 1 .5.5c0 .538-.012 1.05-.034 1.536a3 3 0 1 1-1.133 5.89c-.79 1.865-1.878 2.777-2.833 3.011v2.173l1.425.356c.194.048.377.135.537.255L13.3 15.1a.5.5 0 0 1-.3.9H3a.5.5 0 0 1-.3-.9l1.838-1.379c.16-.12.343-.207.537-.255L6.5 13.11v-2.173c-.955-.234-2.043-1.146-2.833-3.012a3 3 0 1 1-1.132-5.89A33.076 33.076 0 0 1 2.5.5z"/></svg>
+      </div>
+      <div class="sec-title">奖项 &amp; 荣誉</div>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="awards-grid">
+
+      <div class="award-card">
+        <div class="award-medal medal-gold">🥇</div>
+        <div class="award-info">
+          <div class="award-name"><span class="fill">✏ 奖项名称，例：全国医学创新大赛一等奖</span></div>
+          <div class="award-org"><span class="fill">✏ 颁奖机构 / 赛事主办方</span></div>
+          <div class="award-year"><span class="fill">✏ 年份</span></div>
+        </div>
+      </div>
+
+      <div class="award-card">
+        <div class="award-medal medal-silver">🥈</div>
+        <div class="award-info">
+          <div class="award-name"><span class="fill">✏ 奖项名称</span></div>
+          <div class="award-org"><span class="fill">✏ 颁奖机构</span></div>
+          <div class="award-year"><span class="fill">✏ 年份</span></div>
+        </div>
+      </div>
+
+      <div class="award-card">
+        <div class="award-medal medal-blue">📜</div>
+        <div class="award-info">
+          <div class="award-name"><span class="fill">✏ 奖学金 / 荣誉称号</span></div>
+          <div class="award-org"><span class="fill">✏ 北京大学 / 颁发单位</span></div>
+          <div class="award-year"><span class="fill">✏ 年份</span></div>
+        </div>
+      </div>
+
+      <div class="award-card">
+        <div class="award-medal medal-bronze">🏆</div>
+        <div class="award-info">
+          <div class="award-name"><span class="fill">✏ 竞赛 / 比赛奖项</span></div>
+          <div class="award-org"><span class="fill">✏ 竞赛名称 / 组织方</span></div>
+          <div class="award-year"><span class="fill">✏ 年份</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ 技能水平 ══ -->
+  <div class="section">
+    <div class="sec-head">
+      <div class="sec-icon">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="white"><path d="M6 12.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5ZM3 8.062C3 6.76 4.235 5.765 5.53 5.886a26.58 26.58 0 0 0 4.94 0C11.765 5.765 13 6.76 13 8.062v1.157a.933.933 0 0 1-.765.935c-.845.147-2.34.346-4.235.346-1.895 0-3.39-.2-4.235-.346A.933.933 0 0 1 3 9.219V8.062Zm4.542-.827a.25.25 0 0 0-.217.068l-.92.9a24.767 24.767 0 0 1-1.871-.183.25.25 0 0 0-.068.495c.55.076 1.232.149 2.02.193a.25.25 0 0 0 .189-.071l.754-.736.847 1.71a.25.25 0 0 0 .404.062l.932-.97a25.286 25.286 0 0 0 1.922-.188.25.25 0 0 0-.068-.495c-.538.074-1.207.145-1.98.189a.25.25 0 0 0-.166.076l-.754.785-.842-1.7a.25.25 0 0 0-.182-.134Z"/></svg>
+      </div>
+      <div class="sec-title">技能</div>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="skills-grid">
+      <div>
+        <div class="skill-item">
+          <div class="skill-head"><span class="skill-name">Python（生信 / 数据分析）</span><span class="skill-pct"><span class="fill">✏ %</span></span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div>
+        </div>
+        <div class="skill-item" style="margin-top:12px">
+          <div class="skill-head"><span class="skill-name">R（统计 / 可视化）</span><span class="skill-pct"><span class="fill">✏ %</span></span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:65%"></div></div>
+        </div>
+        <div class="skill-item" style="margin-top:12px">
+          <div class="skill-head"><span class="skill-name">数学建模</span><span class="skill-pct"><span class="fill">✏ %</span></span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:70%"></div></div>
+        </div>
+      </div>
+      <div>
+        <div class="skill-item">
+          <div class="skill-head"><span class="skill-name">细胞实验 / 分子生物学</span><span class="skill-pct"><span class="fill">✏ %</span></span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+        </div>
+        <div class="skill-item" style="margin-top:12px">
+          <div class="skill-head"><span class="skill-name">英语（学术写作）</span><span class="skill-pct"><span class="fill">✏ %</span></span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:72%"></div></div>
+        </div>
+        <div class="skill-item" style="margin-top:12px">
+          <div class="skill-head"><span class="skill-name"><span class="fill">✏ 其他技能</span></span><span class="skill-pct"><span class="fill">✏ %</span></span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:60%"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ 兴趣爱好 ══ -->
+  <div class="section">
+    <div class="sec-head">
+      <div class="sec-icon">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="white"><path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.418-3.51 6.791-7.396 10.191a.703.703 0 0 1-.208.149.707.707 0 0 1-.396 0 .703.703 0 0 1-.208-.149C4.51 11.71 1 8.338 1 4.92 1 2.755 2.79 1 4 1z"/></svg>
+      </div>
+      <div class="sec-title">兴趣爱好</div>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="hobby-grid">
+
+      <div class="hobby-card">
+        <span class="hobby-icon">📐</span>
+        <div class="hobby-name">数学</div>
+        <div class="hobby-desc">
+          热爱分析与代数，享受用数学语言描述生物系统的过程。
+          <span class="fill">✏ 补充具体方向，如：微分方程、线代</span>
+        </div>
+      </div>
+
+      <div class="hobby-card">
+        <span class="hobby-icon">🧬</span>
+        <div class="hobby-name">生物信息学</div>
+        <div class="hobby-desc">
+          用代码探索基因组与转录组，相信数据中藏着疾病的答案。
+          <span class="fill">✏ 具体工具：DESeq2 / WGCNA / scRNA-seq…</span>
+        </div>
+      </div>
+
+      <div class="hobby-card">
+        <span class="hobby-icon"><span class="fill">✏ emoji</span></span>
+        <div class="hobby-name"><span class="fill">✏ 爱好名称</span></div>
+        <div class="hobby-desc">
+          <span class="fill">✏ 一两句描述，例如：弹钢琴、跑步、看电影、烹饪…</span>
+        </div>
+      </div>
+
+      <div class="hobby-card">
+        <span class="hobby-icon"><span class="fill">✏ emoji</span></span>
+        <div class="hobby-name"><span class="fill">✏ 爱好名称</span></div>
+        <div class="hobby-desc">
+          <span class="fill">✏ 描述文字</span>
+        </div>
+      </div>
+
+      <div class="hobby-card">
+        <span class="hobby-icon">📚</span>
+        <div class="hobby-name">阅读</div>
+        <div class="hobby-desc">
+          偏爱科学史与哲学类读物。
+          <span class="fill">✏ 最近在读：书名</span>
+        </div>
+      </div>
+
+      <div class="hobby-card">
+        <span class="hobby-icon"><span class="fill">✏ emoji</span></span>
+        <div class="hobby-name"><span class="fill">✏ 爱好名称</span></div>
+        <div class="hobby-desc">
+          <span class="fill">✏ 描述文字</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ 日常分享 ══ -->
+  <div class="section">
+    <div class="sec-head">
+      <div class="sec-icon">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="white"><path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/></svg>
+      </div>
+      <div class="sec-title">日常分享</div>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="posts-grid">
+
+      <div class="post-card">
+        <div class="post-date"><span class="fill">✏ 2024-xx-xx</span></div>
+        <div class="post-title"><span class="fill">✏ 笔记 / 随笔标题，例：初入燕园的第一个月</span></div>
+        <div class="post-excerpt">
+          <span class="fill">✏ 两三句摘要，记录你的所思所感，或学习心得、生活观察</span>
+        </div>
+        <span class="post-tag tag-red">🏥 医学生活</span>
+      </div>
+
+      <div class="post-card">
+        <div class="post-date"><span class="fill">✏ 2024-xx-xx</span></div>
+        <div class="post-title"><span class="fill">✏ 技术笔记标题，例：用 R 画出我第一张火山图</span></div>
+        <div class="post-excerpt">
+          <span class="fill">✏ 摘要</span>
+        </div>
+        <span class="post-tag tag-teal">📊 生信笔记</span>
+      </div>
+
+      <div class="post-card">
+        <div class="post-date"><span class="fill">✏ 2025-xx-xx</span></div>
+        <div class="post-title"><span class="fill">✏ 读书笔记 / 论文精读，例：读《Gene》有感</span></div>
+        <div class="post-excerpt">
+          <span class="fill">✏ 摘要</span>
+        </div>
+        <span class="post-tag tag-gold">📖 读书笔记</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ 联系我 ══ -->
+  <div class="section">
+    <div class="sec-head">
+      <div class="sec-icon">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="white"><path d="M1.75 2h12.5c.966 0 1.75.784 1.75 1.75v8.5A1.75 1.75 0 0 1 14.25 14H1.75A1.75 1.75 0 0 1 0 12.25v-8.5C0 2.784.784 2 1.75 2ZM1.5 12.251c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V5.809L8.38 9.397a.75.75 0 0 1-.76 0L1.5 5.809v6.442Zm13-8.181v-.32a.25.25 0 0 0-.25-.25H1.75a.25.25 0 0 0-.25.25v.32L8 7.88Z"/></svg>
+      </div>
+      <div class="sec-title">联系我</div>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="contact-row">
+      <a class="contact-btn" href="mailto:">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M1.75 2h12.5c.966 0 1.75.784 1.75 1.75v8.5A1.75 1.75 0 0 1 14.25 14H1.75A1.75 1.75 0 0 1 0 12.25v-8.5C0 2.784.784 2 1.75 2ZM1.5 12.251c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V5.809L8.38 9.397a.75.75 0 0 1-.76 0L1.5 5.809v6.442Zm13-8.181v-.32a.25.25 0 0 0-.25-.25H1.75a.25.25 0 0 0-.25.25v.32L8 7.88Z"/></svg>
+        <span class="fill">✏ 1989293588@qq.com</span>
+      </a>
+      <a class="contact-btn" href="#" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        GitHub
+      </a>
+      <a class="contact-btn" href="#" target="_blank">
+        💬 <span class="fill">✏ 微信:YiZHU</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div style="font-size:1.1rem; margin-bottom:6px; color:var(--red);">未名湖畔 · 医路前行</div>
+    <span class="fill">✏ 朱毅煊</span> · 北京大学基础医学院 · <span id="yr"></span>
+  </div>
+
+</div>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
