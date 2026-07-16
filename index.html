@@ -1,800 +1,1233 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="dark">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GitHub 个人主页 · 北大医学</title>
-  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg:      #faf8f5;
-      --bg2:     #f3f0eb;
-      --bg3:     #ece8e1;
-      --border:  #ddd8cf;
-      --ink:     #2c2416;
-      --ink2:    #6b5e4a;
-      --ink3:    #9c8e7a;
-      --red:     #8b1a1a;     /* 北大燕园红 */
-      --red2:    #b5282828;
-      --teal:    #1a5c6e;
-      --gold:    #a07030;
-      --green:   #2d6a4f;
-      --shadow:  rgba(44,36,22,.08);
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>朱毅煊 — YiaZHU</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════
+   DESIGN TOKENS
+   ═══════════════════════════════════════════════════ */
+:root[data-theme="dark"] {
+  --bg:            #08080A;
+  --bg-secondary:  #0E0E11;
+  --bg-card:       #131316;
+  --bg-hover:      #1A1A1F;
+  --border:        rgba(255,255,255,.07);
+  --border-strong: rgba(255,255,255,.12);
+  --text:          #FAFAFA;
+  --text-2:        #A1A1AA;
+  --text-3:        #52525B;
+  --accent:        #6366F1;
+  --accent-soft:   rgba(99,102,241,.12);
+  --accent-glow:   rgba(99,102,241,.25);
+  --grid-line:     rgba(255,255,255,.025);
+  --hero-glow:     rgba(99,102,241,.08);
+  --shadow:        0 0 0 1px var(--border);
+  --transition:    .35s cubic-bezier(.4,0,.2,1);
+}
+:root[data-theme="light"] {
+  --bg:            #FFFFFF;
+  --bg-secondary:  #FAFAFA;
+  --bg-card:       #F4F4F5;
+  --bg-hover:      #E4E4E7;
+  --border:        rgba(0,0,0,.07);
+  --border-strong: rgba(0,0,0,.12);
+  --text:          #09090B;
+  --text-2:        #52525B;
+  --text-3:        #A1A1AA;
+  --accent:        #4F46E5;
+  --accent-soft:   rgba(79,70,229,.08);
+  --accent-glow:   rgba(79,70,229,.15);
+  --grid-line:     rgba(0,0,0,.02);
+  --hero-glow:     rgba(79,70,229,.05);
+  --shadow:        0 0 0 1px var(--border);
+  --transition:    .35s cubic-bezier(.4,0,.2,1);
+}
 
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+/* ═══════════════════════════════════════════════════
+   RESET
+   ═══════════════════════════════════════════════════ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-    html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 
-    body {
-      background: var(--bg);
-      color: var(--ink);
-      font-family: 'Noto Sans SC', sans-serif;
-      font-weight: 400;
-      line-height: 1.7;
-      min-height: 100vh;
-    }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  transition: background var(--transition), color var(--transition);
+  font-feature-settings: 'cv02','cv03','cv04','cv11';
+}
 
-    /* 纸纹背景 */
-    body::before {
-      content: '';
-      position: fixed; inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");
-      pointer-events: none; z-index: 0;
-    }
+::selection { background: var(--accent); color: #fff; }
+::-moz-selection { background: var(--accent); color: #fff; }
 
-    /* 顶部装饰线 */
-    .top-stripe {
-      height: 4px;
-      background: linear-gradient(90deg, var(--red) 0%, var(--gold) 50%, var(--red) 100%);
-    }
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--text-3); border-radius: 3px; }
 
-    .page { max-width: 860px; margin: 0 auto; padding: 52px 28px 80px; position: relative; z-index: 1; }
+a { color: inherit; text-decoration: none; transition: color var(--transition); }
 
-    /* ═══ HERO ═══ */
-    .hero {
-      display: grid;
-      grid-template-columns: 140px 1fr;
-      gap: 36px;
-      align-items: flex-start;
-      padding-bottom: 40px;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 44px;
-      animation: rise .7s ease both;
-    }
+/* ═══════════════════════════════════════════════════
+   NAVIGATION
+   ═══════════════════════════════════════════════════ */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  background: color-mix(in srgb, var(--bg) 80%, transparent);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border-bottom: 1px solid var(--border);
+  transition: border-color var(--transition);
+}
+.nav__inner {
+  max-width: 1080px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav__brand {
+  font-size: .92rem;
+  font-weight: 600;
+  letter-spacing: -.01em;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.nav__brand-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent-glow);
+}
+.nav__links {
+  display: flex;
+  gap: 2px;
+  list-style: none;
+}
+.nav__links a {
+  font-size: .82rem;
+  font-weight: 500;
+  color: var(--text-2);
+  padding: 6px 14px;
+  border-radius: 6px;
+  transition: all var(--transition);
+}
+.nav__links a:hover { color: var(--text); background: var(--bg-hover); }
+.nav__links a.active { color: var(--text); background: var(--accent-soft); }
 
-    .avatar {
-      width: 130px; height: 130px;
-      border-radius: 50%;
-      border: 3px solid var(--border);
-      background: var(--bg3);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 52px;
-      overflow: hidden;
-      box-shadow: 0 4px 18px var(--shadow);
-      transition: border-color .3s;
-      flex-shrink: 0;
-    }
-    .avatar:hover { border-color: var(--red); }
+.nav__actions { display: flex; align-items: center; gap: 8px; }
 
-    .name-block { padding-top: 4px; }
+.theme-btn {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-2);
+  transition: all var(--transition);
+}
+.theme-btn:hover { border-color: var(--border-strong); color: var(--text); }
 
-    .name {
-      font-family: 'Lora', serif;
-      font-size: 2.1rem;
-      font-weight: 600;
-      color: var(--ink);
-      line-height: 1.15;
-      margin-bottom: 2px;
-    }
+.nav__toggle {
+  display: none;
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  cursor: pointer;
+  align-items: center; justify-content: center;
+  color: var(--text-2);
+}
 
-    .name-sub {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: .85rem;
-      color: var(--red);
-      margin-bottom: 14px;
-      letter-spacing: .04em;
-    }
+/* ═══════════════════════════════════════════════════
+   LAYOUT
+   ═══════════════════════════════════════════════════ */
+main { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
 
-    .bio {
-      font-size: .93rem;
-      color: var(--ink2);
-      line-height: 1.8;
-      margin-bottom: 16px;
-      max-width: 500px;
-    }
+section { padding: 120px 0; position: relative; }
+section:first-of-type { padding-top: 80px; }
 
-    .meta-row {
-      display: flex; flex-wrap: wrap; gap: 12px 20px;
-      margin-bottom: 18px;
-    }
+/* Section label */
+.sec-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .72rem;
+  font-weight: 500;
+  color: var(--accent);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.sec-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+  max-width: 120px;
+}
 
-    .meta-item {
-      display: flex; align-items: center; gap: 5px;
-      font-size: .82rem; color: var(--ink3);
-    }
-    .meta-item svg { opacity: .65; flex-shrink: 0; }
+.sec-heading {
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  font-weight: 700;
+  letter-spacing: -.025em;
+  color: var(--text);
+  margin-bottom: 48px;
+  line-height: 1.2;
+}
 
-    .tag-row { display: flex; flex-wrap: wrap; gap: 7px; }
+/* ═══════════════════════════════════════════════════
+   HERO
+   ═══════════════════════════════════════════════════ */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 120px 0 80px;
+  position: relative;
+  overflow: hidden;
+}
+/* Grid background */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 30%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 30%, transparent 80%);
+  pointer-events: none;
+}
+/* Glow */
+.hero::after {
+  content: '';
+  position: absolute;
+  top: -30%; left: 50%;
+  transform: translateX(-50%);
+  width: 900px; height: 600px;
+  background: radial-gradient(ellipse, var(--hero-glow) 0%, transparent 70%);
+  pointer-events: none;
+}
 
-    .tag {
-      font-size: .74rem;
-      padding: 3px 10px;
-      border-radius: 20px;
-      border: 1px solid;
-      font-family: 'Noto Sans SC', sans-serif;
-      font-weight: 500;
-    }
-    .tag-red    { color: var(--red);   border-color: rgba(139,26,26,.3);  background: rgba(139,26,26,.06); }
-    .tag-teal   { color: var(--teal);  border-color: rgba(26,92,110,.3);  background: rgba(26,92,110,.06); }
-    .tag-gold   { color: var(--gold);  border-color: rgba(160,112,48,.3); background: rgba(160,112,48,.06); }
-    .tag-green  { color: var(--green); border-color: rgba(45,106,79,.3);  background: rgba(45,106,79,.06); }
+.hero__content { position: relative; z-index: 1; max-width: 720px; }
 
-    /* 填空标记 */
-    .fill {
-      display: inline-flex; align-items: center; gap: 4px;
-      background: rgba(180,40,40,.09);
-      border: 1px dashed rgba(139,26,26,.4);
-      border-radius: 4px;
-      padding: 1px 7px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: .8rem;
-      color: #9b2c2c;
-      white-space: nowrap;
-    }
+.hero__eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .78rem;
+  color: var(--text-2);
+  margin-bottom: 32px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 14px;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  background: var(--bg-card);
+}
+.hero__eyebrow .dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 6px rgba(34,197,94,.5);
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse { 50% { opacity: .5; } }
 
-    /* ═══ SECTION ═══ */
-    .section { margin-bottom: 44px; animation: rise .7s ease both; }
-    .section:nth-child(2) { animation-delay: .08s; }
-    .section:nth-child(3) { animation-delay: .14s; }
-    .section:nth-child(4) { animation-delay: .20s; }
-    .section:nth-child(5) { animation-delay: .26s; }
-    .section:nth-child(6) { animation-delay: .32s; }
+.hero__name {
+  font-size: clamp(2.8rem, 9vw, 5.5rem);
+  font-weight: 800;
+  letter-spacing: -.04em;
+  line-height: .95;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.hero__name-en {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(.85rem, 2vw, 1rem);
+  color: var(--text-3);
+  letter-spacing: .02em;
+  margin-bottom: 32px;
+}
 
-    .sec-head {
-      display: flex; align-items: center; gap: 10px;
-      margin-bottom: 20px;
-    }
+.hero__role {
+  font-size: clamp(1.1rem, 3vw, 1.4rem);
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 20px;
+  letter-spacing: -.01em;
+}
+.hero__role .muted { color: var(--text-2); font-weight: 400; }
 
-    .sec-icon {
-      width: 28px; height: 28px;
-      background: var(--red);
-      border-radius: 6px;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-    }
-    .sec-icon svg { color: #fff; }
+.hero__desc {
+  font-size: 1rem;
+  color: var(--text-2);
+  line-height: 1.75;
+  max-width: 540px;
+  margin-bottom: 40px;
+}
 
-    .sec-title {
-      font-family: 'Lora', serif;
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: var(--ink);
-      flex: 1;
-    }
+.hero__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.hero__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: .85rem;
+  font-weight: 500;
+  color: var(--text-2);
+  background: var(--bg-card);
+  transition: all var(--transition);
+}
+.hero__link:hover {
+  border-color: var(--border-strong);
+  color: var(--text);
+  background: var(--bg-hover);
+  transform: translateY(-1px);
+}
+.hero__link.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+.hero__link.primary:hover {
+  background: var(--accent);
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+.hero__link svg { opacity: .8; }
 
-    .sec-line {
-      flex: 1; height: 1px; background: var(--border);
-    }
+/* ═══════════════════════════════════════════════════
+   ABOUT
+   ═══════════════════════════════════════════════════ */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+.about-text p {
+  font-size: 1.02rem;
+  line-height: 1.85;
+  color: var(--text-2);
+  margin-bottom: 1.3em;
+}
+.about-text p strong { color: var(--text); font-weight: 600; }
+.about-text p:last-child { margin-bottom: 0; }
 
-    /* ═══ 时间线（教育 / 科研 / 奖项） ═══ */
-    .timeline { position: relative; padding-left: 24px; }
+.about-side {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.about-fact {
+  background: var(--bg-card);
+  padding: 20px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  transition: background var(--transition);
+}
+.about-fact:hover { background: var(--bg-hover); }
+.about-fact__label {
+  font-size: .82rem;
+  color: var(--text-2);
+  font-weight: 500;
+}
+.about-fact__value {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .82rem;
+  color: var(--text);
+  font-weight: 500;
+  text-align: right;
+}
+.about-fact__value.accent { color: var(--accent); }
 
-    .timeline::before {
-      content: ''; position: absolute; left: 6px; top: 6px; bottom: 6px;
-      width: 1px; background: var(--border);
-    }
+/* ═══════════════════════════════════════════════════
+   TIMELINE
+   ═══════════════════════════════════════════════════ */
+.timeline { position: relative; }
+.tl-entry {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 32px;
+  padding: 28px 0;
+  border-bottom: 1px solid var(--border);
+  transition: padding var(--transition);
+}
+.tl-entry:last-child { border-bottom: none; }
+.tl-entry:hover { padding-left: 12px; }
+.tl-entry__date {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .78rem;
+  color: var(--text-3);
+  padding-top: 2px;
+}
+.tl-entry__title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 4px;
+  letter-spacing: -.01em;
+}
+.tl-entry__sub {
+  font-size: .85rem;
+  color: var(--accent);
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+.tl-entry__body {
+  font-size: .88rem;
+  color: var(--text-2);
+  line-height: 1.7;
+}
+.tl-entry__body strong { color: var(--text); font-weight: 600; }
 
-    .tl-item {
-      position: relative;
-      margin-bottom: 28px;
-      padding: 18px 20px;
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      box-shadow: 0 2px 8px var(--shadow);
-      transition: box-shadow .25s, transform .25s;
-    }
-    .tl-item:hover { box-shadow: 0 6px 20px var(--shadow); transform: translateX(2px); }
-    .tl-item:last-child { margin-bottom: 0; }
+/* ═══════════════════════════════════════════════════
+   RESEARCH CARDS
+   ═══════════════════════════════════════════════════ */
+.research-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.r-card {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px 32px;
+  background: var(--bg-card);
+  transition: all var(--transition);
+  position: relative;
+}
+.r-card:hover {
+  border-color: var(--border-strong);
+  background: var(--bg-hover);
+}
+.r-card__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 6px;
+}
+.r-card__title {
+  font-size: .98rem;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -.01em;
+  line-height: 1.4;
+}
+.r-card__badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .7rem;
+  font-weight: 500;
+  color: var(--accent);
+  padding: 3px 10px;
+  border: 1px solid var(--accent-soft);
+  border-radius: 100px;
+  background: var(--accent-soft);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.r-card__role {
+  font-size: .82rem;
+  color: var(--text-2);
+  margin-bottom: 12px;
+}
+.r-card__role .pi { color: var(--text-3); }
+.r-card__desc {
+  font-size: .85rem;
+  color: var(--text-2);
+  line-height: 1.75;
+  margin-bottom: 16px;
+}
+.r-card__desc strong { color: var(--text); font-weight: 600; }
+.r-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.r-tag {
+  font-size: .72rem;
+  padding: 3px 10px;
+  border-radius: 100px;
+  border: 1px solid var(--border);
+  color: var(--text-2);
+  background: var(--bg);
+  font-weight: 500;
+}
 
-    .tl-item::before {
-      content: ''; position: absolute; left: -21px; top: 22px;
-      width: 10px; height: 10px; border-radius: 50%;
-      background: var(--red); border: 2px solid var(--bg);
-      box-shadow: 0 0 0 2px var(--red);
-    }
+/* ═══════════════════════════════════════════════════
+   AWARDS
+   ═══════════════════════════════════════════════════ */
+.awards-list {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.award-row {
+  display: grid;
+  grid-template-columns: 100px 1fr auto;
+  gap: 24px;
+  align-items: center;
+  padding: 20px 28px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-card);
+  transition: background var(--transition);
+}
+.award-row:last-child { border-bottom: none; }
+.award-row:hover { background: var(--bg-hover); }
+.award-row__year {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .8rem;
+  color: var(--accent);
+  font-weight: 500;
+}
+.award-row__title {
+  font-size: .9rem;
+  font-weight: 500;
+  color: var(--text);
+}
+.award-row__org {
+  font-size: .78rem;
+  color: var(--text-3);
+}
 
-    .tl-header {
-      display: flex; align-items: flex-start; justify-content: space-between;
-      gap: 12px; margin-bottom: 6px;
-    }
+/* ═══════════════════════════════════════════════════
+   SKILLS
+   ═══════════════════════════════════════════════════ */
+.skills-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+}
+.skill-group__title {
+  font-size: .78rem;
+  font-weight: 600;
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+.skill-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 0;
+}
+.skill-row__name {
+  font-size: .88rem;
+  color: var(--text);
+  font-weight: 500;
+}
+.skill-row__bar {
+  flex: 1;
+  max-width: 160px;
+  height: 4px;
+  background: var(--bg-hover);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.skill-row__fill {
+  height: 100%;
+  border-radius: 2px;
+  background: var(--text-3);
+  width: 0;
+  transition: width 1s cubic-bezier(.4,0,.2,1), background var(--transition);
+}
+.skill-row:hover .skill-row__fill { background: var(--accent); }
+.skill-row__pct {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .75rem;
+  color: var(--text-3);
+  width: 36px;
+  text-align: right;
+}
 
-    .tl-title {
-      font-weight: 600; font-size: .95rem; color: var(--ink);
-      line-height: 1.4;
-    }
+/* ═══════════════════════════════════════════════════
+   INTERESTS
+   ═══════════════════════════════════════════════════ */
+.interests-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+.interest-tile {
+  padding: 24px 20px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg-card);
+  transition: all var(--transition);
+  text-align: left;
+}
+.interest-tile:hover {
+  border-color: var(--border-strong);
+  background: var(--bg-hover);
+  transform: translateY(-2px);
+}
+.interest-tile__label {
+  font-size: .88rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 6px;
+  letter-spacing: -.01em;
+}
+.interest-tile__desc {
+  font-size: .76rem;
+  color: var(--text-3);
+  line-height: 1.5;
+}
 
-    .tl-date {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: .75rem; color: var(--ink3);
-      white-space: nowrap; padding-top: 2px;
-      flex-shrink: 0;
-    }
+/* ═══════════════════════════════════════════════════
+   NOTES
+   ═══════════════════════════════════════════════════ */
+.notes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.note-tile {
+  padding: 24px 26px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg-card);
+  transition: all var(--transition);
+  cursor: pointer;
+}
+.note-tile:hover {
+  border-color: var(--border-strong);
+  background: var(--bg-hover);
+  transform: translateY(-2px);
+}
+.note-tile__date {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .72rem;
+  color: var(--text-3);
+  margin-bottom: 12px;
+}
+.note-tile__title {
+  font-size: .92rem;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.4;
+  margin-bottom: 10px;
+  letter-spacing: -.01em;
+}
+.note-tile__text {
+  font-size: .8rem;
+  color: var(--text-2);
+  line-height: 1.65;
+  margin-bottom: 14px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.note-tile__cat {
+  font-size: .68rem;
+  font-weight: 500;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
 
-    .tl-sub {
-      font-size: .83rem; color: var(--teal);
-      margin-bottom: 8px; font-weight: 500;
-    }
+/* ═══════════════════════════════════════════════════
+   CONTACT
+   ═══════════════════════════════════════════════════ */
+.contact {
+  text-align: center;
+  padding: 140px 0 100px;
+}
+.contact__title {
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -.03em;
+  color: var(--text);
+  margin-bottom: 16px;
+  line-height: 1.15;
+}
+.contact__sub {
+  font-size: 1rem;
+  color: var(--text-2);
+  margin-bottom: 40px;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.7;
+}
+.contact__btns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+.contact__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: .88rem;
+  font-weight: 500;
+  color: var(--text-2);
+  background: var(--bg-card);
+  transition: all var(--transition);
+}
+.contact__btn:hover {
+  border-color: var(--border-strong);
+  color: var(--text);
+  background: var(--bg-hover);
+  transform: translateY(-1px);
+}
+.contact__btn.primary {
+  background: var(--text);
+  border-color: var(--text);
+  color: var(--bg);
+}
+.contact__btn.primary:hover {
+  filter: brightness(.9);
+  color: var(--bg);
+}
 
-    .tl-body {
-      font-size: .85rem; color: var(--ink2); line-height: 1.75;
-    }
+/* ═══════════════════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════════════════ */
+.footer {
+  border-top: 1px solid var(--border);
+  padding: 40px 32px;
+  max-width: 1080px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: .78rem;
+  color: var(--text-3);
+}
+.footer__left { display: flex; align-items: center; gap: 8px; }
+.footer__right { font-family: 'JetBrains Mono', monospace; }
 
-    .tl-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+/* ═══════════════════════════════════════════════════
+   SCROLL REVEAL
+   ═══════════════════════════════════════════════════ */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .6s cubic-bezier(.4,0,.2,1), transform .6s cubic-bezier(.4,0,.2,1);
+}
+.reveal.in {
+  opacity: 1;
+  transform: translateY(0);
+}
 
-    /* ═══ 奖项卡片 ═══ */
-    .awards-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-    }
+/* ═══════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════ */
+@media (max-width: 880px) {
+  .about-grid { grid-template-columns: 1fr; gap: 32px; }
+  .skills-layout { grid-template-columns: 1fr; gap: 32px; }
+  .interests-grid { grid-template-columns: repeat(2, 1fr); }
+  .notes-grid { grid-template-columns: 1fr; }
+  .tl-entry { grid-template-columns: 1fr; gap: 8px; }
+  .tl-entry__date { padding-top: 0; }
+}
 
-    .award-card {
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 16px 18px;
-      display: flex; gap: 14px; align-items: flex-start;
-      box-shadow: 0 2px 8px var(--shadow);
-      transition: box-shadow .25s, transform .25s;
-    }
-    .award-card:hover { box-shadow: 0 6px 20px var(--shadow); transform: translateY(-2px); }
-
-    .award-medal {
-      width: 36px; height: 36px; border-radius: 8px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 18px; flex-shrink: 0;
-    }
-    .medal-gold   { background: rgba(160,112,48,.12); }
-    .medal-silver { background: rgba(100,100,120,.1); }
-    .medal-bronze { background: rgba(139,80,50,.1); }
-    .medal-blue   { background: rgba(26,92,110,.1); }
-
-    .award-info { flex: 1; }
-
-    .award-name {
-      font-weight: 600; font-size: .88rem; color: var(--ink); line-height: 1.35;
-      margin-bottom: 3px;
-    }
-
-    .award-org {
-      font-size: .78rem; color: var(--ink3);
-    }
-
-    .award-year {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: .72rem; color: var(--red);
-      background: rgba(139,26,26,.07);
-      padding: 1px 6px; border-radius: 4px;
-      display: inline-block; margin-top: 5px;
-    }
-
-    /* ═══ 技能条 ═══ */
-    .skills-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 10px 32px;
-    }
-
-    .skill-item { margin-bottom: 4px; }
-
-    .skill-head {
-      display: flex; justify-content: space-between; align-items: center;
-      margin-bottom: 5px;
-    }
-
-    .skill-name { font-size: .83rem; color: var(--ink2); font-weight: 500; }
-    .skill-pct  { font-family: 'JetBrains Mono', monospace; font-size: .72rem; color: var(--ink3); }
-
-    .skill-bar {
-      height: 5px; background: var(--bg3); border-radius: 4px; overflow: hidden;
-    }
-
-    .skill-fill {
-      height: 100%; border-radius: 4px;
-      background: linear-gradient(90deg, var(--red), var(--gold));
-      animation: grow 1s .4s ease both;
-    }
-
-    @keyframes grow {
-      from { width: 0 !important; }
-    }
-
-    /* ═══ 爱好 ═══ */
-    .hobby-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
-    }
-
-    .hobby-card {
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 18px 16px;
-      text-align: center;
-      box-shadow: 0 2px 8px var(--shadow);
-      transition: box-shadow .25s, transform .25s;
-    }
-    .hobby-card:hover { box-shadow: 0 6px 20px var(--shadow); transform: translateY(-3px); }
-
-    .hobby-icon { font-size: 26px; margin-bottom: 8px; display: block; }
-
-    .hobby-name {
-      font-size: .88rem; font-weight: 600; color: var(--ink); margin-bottom: 5px;
-    }
-
-    .hobby-desc { font-size: .78rem; color: var(--ink3); line-height: 1.6; }
-
-    /* ═══ 日常分享 ═══ */
-    .posts-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
-    }
-
-    .post-card {
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 18px 20px;
-      box-shadow: 0 2px 8px var(--shadow);
-      transition: box-shadow .25s, transform .25s;
-      cursor: pointer;
-    }
-    .post-card:hover { box-shadow: 0 6px 20px var(--shadow); transform: translateY(-2px); }
-
-    .post-date {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: .72rem; color: var(--ink3); margin-bottom: 8px;
-    }
-
-    .post-title {
-      font-family: 'Lora', serif;
-      font-size: .95rem; font-weight: 600; color: var(--ink);
-      line-height: 1.4; margin-bottom: 8px;
-    }
-
-    .post-excerpt {
-      font-size: .8rem; color: var(--ink2); line-height: 1.7;
-    }
-
-    .post-tag {
-      display: inline-block;
-      font-size: .68rem;
-      padding: 2px 7px; border-radius: 12px;
-      margin-top: 10px;
-      font-weight: 500;
-    }
-
-    /* ═══ 联系 ═══ */
-    .contact-row { display: flex; flex-wrap: wrap; gap: 10px; }
-
-    .contact-btn {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: #fff; border: 1px solid var(--border);
-      border-radius: 8px; padding: 10px 18px;
-      font-size: .86rem; color: var(--ink2);
-      text-decoration: none;
-      box-shadow: 0 1px 4px var(--shadow);
-      transition: all .2s;
-      cursor: pointer;
-    }
-    .contact-btn:hover {
-      border-color: var(--red); color: var(--red);
-      box-shadow: 0 4px 14px var(--shadow);
-      transform: translateY(-1px);
-    }
-
-    /* ═══ Footer ═══ */
-    .footer {
-      text-align: center;
-      padding-top: 32px;
-      border-top: 1px solid var(--border);
-      font-size: .78rem; color: var(--ink3);
-      font-family: 'JetBrains Mono', monospace;
-    }
-
-    /* ═══ 动画 ═══ */
-    @keyframes rise {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ═══ 响应式 ═══ */
-    @media (max-width: 640px) {
-      .hero { grid-template-columns: 1fr; }
-      .avatar { margin: 0 auto; }
-      .awards-grid, .skills-grid, .posts-grid { grid-template-columns: 1fr; }
-      .hobby-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-  </style>
+@media (max-width: 640px) {
+  main { padding: 0 20px; }
+  .nav__inner { padding: 0 20px; }
+  .nav__links { display: none; }
+  .nav__toggle { display: flex; }
+  .nav__links.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 64px; left: 0; right: 0;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 20px;
+    gap: 4px;
+  }
+  section { padding: 80px 0; }
+  .hero { padding: 100px 0 60px; }
+  .interests-grid { grid-template-columns: 1fr; }
+  .award-row { grid-template-columns: 1fr; gap: 4px; }
+  .footer { flex-direction: column; gap: 12px; text-align: center; }
+}
+</style>
 </head>
 <body>
 
-<div class="top-stripe"></div>
+<!-- ══ NAV ══ -->
+<nav class="nav">
+  <div class="nav__inner">
+    <a href="#hero" class="nav__brand">
+      <span class="nav__brand-dot"></span>
+      朱毅煊
+    </a>
+    <ul class="nav__links" id="navLinks">
+      <li><a href="#about" data-nav="about">About</a></li>
+      <li><a href="#education" data-nav="education">Education</a></li>
+      <li><a href="#research" data-nav="research">Research</a></li>
+      <li><a href="#awards" data-nav="awards">Awards</a></li>
+      <li><a href="#skills" data-nav="skills">Skills</a></li>
+      <li><a href="#contact" data-nav="contact">Contact</a></li>
+    </ul>
+    <div class="nav__actions">
+      <button class="theme-btn" id="themeToggle" aria-label="Toggle theme">
+        <svg id="iconMoon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg id="iconSun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
+      <button class="nav__toggle" id="navToggle" aria-label="Menu">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
 
-<div class="page">
+<main>
 
   <!-- ══ HERO ══ -->
-  <div class="hero">
-    <div class="avatar">
-      <img src="https://avatars.githubusercontent.com/YiaZHU" style="width:100%;height:100%;object-fit:cover;border-radius:50%"> 
-    </div>
-
-    <div class="name-block">
-      <div class="name">朱毅煊</div>
-      <div class="name-sub">@ YiaZHU</div>
-
-      <div class="bio">
-        北京大学基础医学院 2024 级临床医学（八年制）本科生。<br>
-        热爱临床医学、金融数学、胚胎发育与神经科学，探索计算科学与临床研究的交叉地带。<br>
-        永远相信美好的事情即将发生。</span>
+  <section class="hero" id="hero">
+    <div class="hero__content">
+      <div class="hero__eyebrow">
+        <span class="dot"></span>
+        Open to research collaborations
       </div>
-
-      <div class="meta-row">
-        <div class="meta-item">
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M1.5 14.25c0 .138.112.25.25.25H4v-1.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 .75.75v1.25h2.25a.25.25 0 0 0 .25-.25V1.75a.25.25 0 0 0-.25-.25h-8.5a.25.25 0 0 0-.25.25Z"/></svg>
-          北京大学基础医学院
-        </div>
-        <div class="meta-item">
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="m12.596 11.596-3.535 3.536a1.5 1.5 0 0 1-2.122 0l-3.535-3.536a6.5 6.5 0 1 1 9.192-9.193 6.5 6.5 0 0 1 0 9.193Z"/></svg>
-          北京，中国
-        </div>
-        <div class="meta-item">
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0Z"/></svg>
-            MBTI：ENTJ
-          </a>
-        </div>
-      </div>
-
-      <div class="tag-row">
-        <span class="tag tag-red">🏥 临床医学（八年制）</span>
-        <span class="tag tag-teal">📊 胚胎发育研究</span>
-        <span class="tag tag-gold">📐 数学爱好者</span>
-        <span class="tag tag-green">🔬 神经科学爱好者</span></span>
+      <h1 class="hero__name">朱毅煊</h1>
+      <div class="hero__name-en">YiaZHU · Peking University</div>
+      <p class="hero__role">
+        Clinical Medicine <span class="muted">/</span> Computational Biology <span class="muted">/</span> Neuroscience
+      </p>
+      <p class="hero__desc">
+        北京大学基础医学院临床医学八年制本科生。穿梭于胚胎发育、神经科学与计算生物学的交叉地带，探索用数据与代码重新定义医学研究的边界。
+      </p>
+      <div class="hero__links">
+        <a class="hero__link primary" href="#contact">
+          Get in touch
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a class="hero__link" href="https://github.com/YiaZHU" target="_blank">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub
+        </a>
+        <a class="hero__link" href="mailto:1989293588@qq.com">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Email
+        </a>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- ══ 教育经历 ══ -->
-  <div class="section">
-    <div class="sec-head">
-      <div class="sec-icon">
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="white"><path d="M8 .5a.5.5 0 0 1 .447.276L10.77 5H15a.5.5 0 0 1 .367.162l.001.001a.5.5 0 0 1 .071.576l-3.5 7A.5.5 0 0 1 11.5 13H4.5a.5.5 0 0 1-.438-.261l-3.5-7A.5.5 0 0 1 1 5h4.23L7.553.776A.5.5 0 0 1 8 .5z"/></svg>
+  <!-- ══ ABOUT ══ -->
+  <section id="about">
+    <div class="sec-label reveal">01 — About</div>
+    <h2 class="sec-heading reveal">背景与方向</h2>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>
+          我是<strong>朱毅煊</strong>，北京大学基础医学院 2024 级临床医学（八年制）本科生，以高考 <strong>691 分</strong>从安徽省青阳中学考入燕园。
+        </p>
+        <p>
+          目前同时参与三个方向的科研工作：<strong>椎间盘退变机制</strong>（北医三院骨科）、<strong>胚胎体外培养</strong>（未来技术学院）与<strong>脑机接口</strong>（北大医院神经外科）。致力于在临床实践与计算科学之间寻找交叉创新的可能。
+        </p>
+        <p>
+          课余自学 Python、R 与生物信息学，偏爱科学史、人物传记与哲学阅读。相信跨学科视野是医学创新的源泉——永远相信美好的事情即将发生。
+        </p>
       </div>
-      <div class="sec-title">教育经历</div>
-      <div class="sec-line"></div>
+      <div class="about-side reveal">
+        <div class="about-fact">
+          <span class="about-fact__label">院校</span>
+          <span class="about-fact__value">Peking University</span>
+        </div>
+        <div class="about-fact">
+          <span class="about-fact__label">专业</span>
+          <span class="about-fact__value">Clinical Medicine</span>
+        </div>
+        <div class="about-fact">
+          <span class="about-fact__label">学制</span>
+          <span class="about-fact__value">8-Year MD Program</span>
+        </div>
+        <div class="about-fact">
+          <span class="about-fact__label">所在地</span>
+          <span class="about-fact__value">Beijing, CN</span>
+        </div>
+        <div class="about-fact">
+          <span class="about-fact__label">高考成绩</span>
+          <span class="about-fact__value accent">691</span>
+        </div>
+        <div class="about-fact">
+          <span class="about-fact__label">MBTI</span>
+          <span class="about-fact__value">ENTJ</span>
+        </div>
+      </div>
     </div>
+  </section>
 
+  <!-- ══ EDUCATION ══ -->
+  <section id="education">
+    <div class="sec-label reveal">02 — Education</div>
+    <h2 class="sec-heading reveal">教育经历</h2>
     <div class="timeline">
+      <div class="tl-entry reveal">
+        <div class="tl-entry__date">2024.09 — 2032</div>
+        <div>
+          <div class="tl-entry__title">北京大学 · 基础医学院</div>
+          <div class="tl-entry__sub">临床医学（八年制）· 本博连读</div>
+          <div class="tl-entry__body">
+            主修临床医学核心课程，自学胚胎发育、生物信息学与神经科学。旁听<strong>文学中的爱情</strong>、<strong>地震概论</strong>、<strong>中国历史地理</strong>、<strong>政治学原理</strong>等通识课程。
+          </div>
+        </div>
+      </div>
+      <div class="tl-entry reveal">
+        <div class="tl-entry__date">2021.09 — 2024.06</div>
+        <div>
+          <div class="tl-entry__title">安徽省青阳中学 · 理科实验班</div>
+          <div class="tl-entry__sub">高中</div>
+          <div class="tl-entry__body">
+            以高考 <strong>691 分</strong>考入北京大学基础医学院临床医学专业。
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      <div class="tl-item">
-        <div class="tl-header">
-          <div class="tl-title">北京大学 · 基础医学院</div>
-          <div class="tl-date">2024.09 — 2032（预计）</div>
+  <!-- ══ RESEARCH ══ -->
+  <section id="research">
+    <div class="sec-label reveal">03 — Research</div>
+    <h2 class="sec-heading reveal">科研经历</h2>
+    <div class="research-list">
+
+      <div class="r-card reveal">
+        <div class="r-card__top">
+          <div class="r-card__title">椎间盘退变（IVDD）机制研究</div>
+          <span class="r-card__badge">Active</span>
         </div>
-        <div class="tl-sub">临床医学（八年制）本科 → 博士连读</div>
-        <div class="tl-body">
-          主修临床医学核心课程，自学胚胎发育、生物信息学与神经科学相关方向。
+        <div class="r-card__role">本科科研助理 · 周非非教授课题组 <span class="pi">/ 北医三院骨科实验室</span></div>
+        <div class="r-card__desc">
+          聚焦<strong>软骨终板细胞铁死亡</strong>在脊柱损伤修复中的作用。主要工作：NPC 软骨终板细胞培养、Western Blot、qPCR、流式细胞术、小鼠动物模型构建。
         </div>
-        <div class="tl-tags">
-          <span class="tag tag-red">临床医学</span>
-          <span class="tag tag-teal">胚胎发育</span>
-          <span class="tag tag-gold">神经科学</span></span>
+        <div class="r-card__tags">
+          <span class="r-tag">软骨终板</span>
+          <span class="r-tag">铁死亡</span>
+          <span class="r-tag">脊柱损伤修复</span>
+          <span class="r-tag">动物模型</span>
         </div>
       </div>
 
-      <div class="tl-item">
-        <div class="tl-header">
-          <div class="tl-title">高中 / 安徽省青阳中学</div>
-          <div class="tl-date">2021年 — 2024年</div>
+      <div class="r-card reveal">
+        <div class="r-card__top">
+          <div class="r-card__title">胚胎发育机制与体外培养</div>
+          <span class="r-card__badge">Active</span>
         </div>
-        <div class="tl-sub">理科实验班</div>
-        <div class="tl-body">
-         以高考 691 分考入北大
+        <div class="r-card__role">本科科研助理 · 翟晶磊教授课题组 <span class="pi">/ 北京大学未来技术学院</span></div>
+        <div class="r-card__desc">
+          研究<strong>小鼠体外胚胎培养</strong>与类胚胎器官构建。主要工作：iPSC/ESC 细胞培养、qRT-PCR、IHC 免疫组化、单细胞测序分析。
+        </div>
+        <div class="r-card__tags">
+          <span class="r-tag">胚胎体外培养</span>
+          <span class="r-tag">胚胎干细胞</span>
+          <span class="r-tag">类胚胎器官</span>
+          <span class="r-tag">单细胞测序</span>
+        </div>
+      </div>
+
+      <div class="r-card reveal">
+        <div class="r-card__top">
+          <div class="r-card__title">半侵入式脑机接口研究</div>
+          <span class="r-card__badge">2025 Summer</span>
+        </div>
+        <div class="r-card__role">本科科研助理 · 伊志强教授课题组 <span class="pi">/ 北大医院神经外科</span></div>
+        <div class="r-card__desc">
+          研究<strong>脑机接口植入方式</strong>差异与后期治疗策略。对比分析获批临床试验产品（含"北脑一号"），学习半植入手术流程。关注难治性癫痫、ALS、帕金森等神经疾病应用。
+        </div>
+        <div class="r-card__tags">
+          <span class="r-tag">半侵入式 BCI</span>
+          <span class="r-tag">北脑一号</span>
+          <span class="r-tag">难治性癫痫</span>
+          <span class="r-tag">ALS · PD</span>
         </div>
       </div>
 
     </div>
+  </section>
+
+  <!-- ══ AWARDS ══ -->
+  <section id="awards">
+    <div class="sec-label reveal">04 — Awards</div>
+    <h2 class="sec-heading reveal">获奖与经历</h2>
+    <div class="awards-list">
+      <div class="award-row reveal">
+        <span class="award-row__year">2026.01</span>
+        <span class="award-row__title">第十二届全国大学生医学创新大赛暨“一带一路”国际竞赛</span>
+        <span class="award-row__org">省级三等奖</span>
+      </div>
+      <div class="award-row reveal">
+        <span class="award-row__year">2025.06</span>
+        <span class="award-row__title">北京大学第一医院暑研 · 校级二等奖</span>
+        <span class="award-row__org">PKU First Hospital</span>
+      </div>
+      <div class="award-row reveal">
+        <span class="award-row__year">2024.06</span>
+        <span class="award-row__title">高考 691 分 · 录取北京大学</span>
+        <span class="award-row__org">安徽省青阳中学</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SKILLS ══ -->
+  <section id="skills">
+    <div class="sec-label reveal">05 — Skills</div>
+    <h2 class="sec-heading reveal">技能与专长</h2>
+    <div class="skills-layout">
+      <div class="skill-group reveal">
+        <div class="skill-group__title">Research</div>
+        <div class="skill-row" data-pct="90.4">
+          <span class="skill-row__name">肌骨系统</span>
+          <div class="skill-row__bar"><div class="skill-row__fill"></div></div>
+          <span class="skill-row__pct">90</span>
+        </div>
+        <div class="skill-row" data-pct="92.7>
+          <span class="skill-row__name">生物统计</span>
+          <div class="skill-row__bar"><div class="skill-row__fill"></div></div>
+          <span class="skill-row__pct">75</span>
+        </div>
+        <div class="skill-row" data-pct="86">
+          <span class="skill-row__name">医学病原与免疫基础（一）</span>
+          <div class="skill-row__bar"><div class="skill-row__fill"></div></div>
+          <span class="skill-row__pct">70</span>
+        </div>
+        <div class="skill-row" data-pct="90">
+          <span class="skill-row__name">医学英语综合</span>
+          <div class="skill-row__bar"><div class="skill-row__fill"></div></div>
+          <span class="skill-row__pct">85</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <div class="skill-group__title">Computational</div>
+        <div class="skill-row" data-pct="90">
+          <span class="skill-row__name">Python</span>
+          <div class="skill-row__bar"><div class="skill-row__fill"></div></div>
+          <span class="skill-row__pct">80</span>
+        </div>
+        <div class="skill-row" data-pct="85">
+          <span class="skill-row__name">R</span>
+          <div class="skill-row__bar"><div class="skill-row__fill"></div></div>
+          <span class="skill-row__pct">70</span>
+        </div>
+        <div class="skill-row" data-pct="93">
+          <span class="skill-row__name">平台经济</span>
+          <div class="skill-row__bar"><div class="skill-row__fill"></div></div>
+          <span class="skill-row__pct">65</span>
+        </div>
+        <div class="skill-row" data-pct="94">
+          <span class="skill-row__name">习近平新时代中国特色社会主义思想概论</span>
+          <div class="skill-row__bar"><div class="skill-row__fill"></div></div>
+          <span class="skill-row__pct">60</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ INTERESTS ══ -->
+  <section id="interests">
+    <div class="sec-label reveal">06 — Interests</div>
+    <h2 class="sec-heading reveal">兴趣与爱好</h2>
+    <div class="interests-grid">
+      <div class="interest-tile reveal">
+        <div class="interest-tile__label">数学</div>
+        <div class="interest-tile__desc">微分方程、线性代数，用数学语言描述生物系统</div>
+      </div>
+      <div class="interest-tile reveal">
+        <div class="interest-tile__label">生物信息学</div>
+        <div class="interest-tile__desc">用代码探索基因组与转录组</div>
+      </div>
+      <div class="interest-tile reveal">
+        <div class="interest-tile__label">运动</div>
+        <div class="interest-tile__desc">乒乓球、游泳、跑步、滑雪、高尔夫</div>
+      </div>
+      <div class="interest-tile reveal">
+        <div class="interest-tile__label">旅行</div>
+        <div class="interest-tile__desc">不同地点的风景，不同文化的精神</div>
+      </div>
+      <div class="interest-tile reveal">
+        <div class="interest-tile__label">阅读</div>
+        <div class="interest-tile__desc">科学史、人物传记与哲学</div>
+      </div>
+      <div class="interest-tile reveal">
+        <div class="interest-tile__label">通识课程</div>
+        <div class="interest-tile__desc">文学中的爱情、地震概论、历史地理</div>
+      </div>
+      <div class="interest-tile reveal">
+        <div class="interest-tile__label">金融数学</div>
+        <div class="interest-tile__desc">量化思维与市场建模的交叉探索</div>
+      </div>
+      <div class="interest-tile reveal">
+        <div class="interest-tile__label">公众号写作</div>
+        <div class="interest-tile__desc">ChattyGlimmer · 记录医学生活与思考</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ NOTES ══ -->
+  <section id="notes">
+    <div class="sec-label reveal">07 — Notes</div>
+    <h2 class="sec-heading reveal">随笔与笔记</h2>
+    <div class="notes-grid">
+      <div class="note-tile reveal">
+        <div class="note-tile__date">2024.09.29</div>
+        <div class="note-tile__title">初入燕园的第一个月</div>
+        <div class="note-tile__text">燕园：大雨时是淹园，晴天时是颜园；春天时是艳园，秋天时是嫣园。</div>
+        <div class="note-tile__cat">Med Life</div>
+      </div>
+      <div class="note-tile reveal">
+        <div class="note-tile__date">2025.09.03</div>
+        <div class="note-tile__title">用 R 画出第一张散点图</div>
+        <div class="note-tile__text">第一次学习 R 语言，打开生信新世界的大门。从 ggplot2 开始，每一行代码都是一次探索。</div>
+        <div class="note-tile__cat">Bioinformatics</div>
+      </div>
+      <div class="note-tile reveal">
+        <div class="note-tile__date">2026.02.22</div>
+        <div class="note-tile__title">读《你当像鸟飞向你的山》</div>
+        <div class="note-tile__text">不同的人适合不同的时代，不同的时代造就不同的人，可时代无法选择人，人也无法选择时代。</div>
+        <div class="note-tile__cat">Reading</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CONTACT ══ -->
+  <section id="contact" class="contact">
+    <div class="reveal">
+      <h2 class="contact__title">Let's build something<br>that matters.</h2>
+      <p class="contact__sub">无论是学术讨论、科研合作还是简单交流，欢迎随时联系。</p>
+      <div class="contact__btns">
+        <a class="contact__btn primary" href="mailto:1989293588@qq.com">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          1989293588@qq.com
+        </a>
+        <a class="contact__btn" href="https://github.com/YiaZHU" target="_blank">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub · YiaZHU
+        </a>
+        <a class="contact__btn" href="https://mp.weixin.qq.com/s/dsshzrSos8X3jVv54BzOZQ" target="_blank">
+          WeChat 公众号
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ══ FOOTER ══ -->
+<footer class="footer">
+  <div class="footer__left">
+    <span class="nav__brand-dot"></span>
+    朱毅煊 · Peking University
   </div>
-
-  <!-- ══ 科研经历 ══ -->
-  <div class="section">
-    <div class="sec-head">
-      <div class="sec-icon">
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="white"><path d="M14.5 3a.5.5 0 0 1-.5.5h-1v8.5a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V3.5H2a.5.5 0 0 1 0-1h12a.5.5 0 0 1 .5.5zM4.118 4 4 4.059V12h8V4.059L11.882 4H4.118zM5.5 5.5a.5.5 0 0 1 1 0v5a.5.5 0 0 1-1 0v-5zm3 0a.5.5 0 0 1 1 0v5a.5.5 0 0 1-1 0v-5z"/></svg>
-      </div>
-      <div class="sec-title">科研经历</div>
-      <div class="sec-line"></div>
-    </div>
-
-    <div class="timeline">
-
-      <div class="tl-item">
-        <div class="tl-header">
-          <div class="tl-title">实验室  / 北医三院骨科实验室（北京大学第三医院）</div>
-          <div class="tl-date">2026. 03—至今</div>
-        </div>
-        <div class="tl-sub">本科科研助理 · 周非非教授课题组</div>
-        <div class="tl-body">
-         描述研究方向，例如：聚焦椎间盘退变（IVDD）
-          <br>
-          主要工作：细胞培养（NPC软骨终板细胞）、Western Blot（WB）、qPCR、流式细胞术、小鼠动物模型构建。
-        </div>
-        <div class="tl-tags">
-          <span class="tag tag-red">软骨终板</span>
-          <span class="tag tag-teal">终板细胞铁死亡</span>
-          <span class="tag tag-gold">脊柱损伤修复</span>
-          <span class="tag tag-green">动物实验</span>
-        </div>
-      </div>
-
-      <div class="tl-item">
-        <div class="tl-header">
-          <div class="tl-title">实验室  / 北京大学未来技术学院</div>
-          <div class="tl-date">2026. 01-至今</div>
-        </div>
-        <div class="tl-sub">本科科研助理 · 翟晶磊教授课题组</div>
-        <div class="tl-body">
-          胚胎发育机制，例如：小鼠体外胚胎培养
-          <br>
-          主要工作：细胞培养（iPSC、ESC）、qRT-PCR、IHC、单细胞测序。
-        </div>
-        <div class="tl-tags">
-          <span class="tag tag-red">胚胎体外培养</span>
-          <span class="tag tag-teal">胚胎干细胞</span>
-          <span class="tag tag-gold">类胚胎器官</span>
-          <span class="tag tag-green">动物实验</span>
-        </div>
-      </div>
-
-      <div class="tl-item">
-        <div class="tl-header">
-          <div class="tl-title">实验室 / 北大医院神经外科脑机接口暑研（北京大学第一医院）</div>
-          <div class="tl-date">2025. 06-2025.08</div>
-        </div>
-        <div class="tl-sub">本科科研助理 · 伊志强教授课题组</div>
-        <div class="tl-body">
-          脑机接口的植入和后期治疗
-          <br>
-          主要工作：研究脑机接口植入方式差异、对比研究获批临床试验的脑机接口产品、学习半侵入式脑机接口植入手术。
-        </div>
-        <div class="tl-tags">
-          <span class="tag tag-red">半侵入式脑机接口</span>
-          <span class="tag tag-teal">“北脑一号”</span>
-          <span class="tag tag-gold">难治性癫痫、ALS、PD、AD、PTSD</span>
-          <span class="tag tag-green">动物实验</span>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-    <!-- ══ 获奖经历 ══ -->
-  <div class="section">
-    <div class="sec-head">
-      <div class="sec-icon">
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="white"><path d="M8 .5a.5.5 0 0 1 .447.276L10.77 5H15a.5.5 0 0 1 .367.162l.001.001a.5.5 0 0 1 .071.576l-3.5 7A.5.5 0 0 1 11.5 13H4.5a.5.5 0 0 1-.438-.261l-3.5-7A.5.5 0 0 1 1 5h4.23L7.553.776A.5.5 0 0 1 8 .5z"/></svg>
-      </div>
-      <div class="sec-title">获奖经历</div>
-      <div class="sec-line"></div>
-    </div>
-
-    <div class="timeline">
-
-      <div class="tl-item">
-        <div class="tl-header">
-          <div class="tl-title">北京大学第一医院 2025 年暑研</div>
-          <div class="tl-date">2025.10 </div>
-        </div>
-        <div class="tl-sub">校级二等奖</div>
-        </div>
-      </div>
-
-      <div class="tl-item">
-        <div class="tl-header">
-          <div class="tl-title">高中 / 安徽省青阳中学</div>
-          <div class="tl-date">2021年 — 2024年</div>
-        </div>
-        <div class="tl-sub">理科实验班</div>
-        <div class="tl-body">
-         以高考 691 分考入北大
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- ══ 技能水平 ══ -->
-  <div class="section">
-    <div class="sec-head">
-      <div class="sec-icon">
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="white"><path d="M6 12.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5ZM3 8.062C3 6.76 4.235 5.765 5.53 5.886a26.58 26.58 0 0 0 4.94 0C11.765 5.765 13 6.76 13 8.062v1.157a.933.933 0 0 1-.765.935c-.845.147-2.34.346-4.235.346-1.895 0-3.39-.2-4.235-.346A.933.933 0 0 1 3 9.219V8.062Zm4.542-.827a.25.25 0 0 0-.217.068l-.92.9a24.767 24.767 0 0 1-1.871-.183.25.25 0 0 0-.068.495c.55.076 1.232.149 2.02.193a.25.25 0 0 0 .189-.071l.754-.736.847 1.71a.25.25 0 0 0 .404.062l.932-.97a25.286 25.286 0 0 0 1.922-.188.25.25 0 0 0-.068-.495c-.538.074-1.207.145-1.98.189a.25.25 0 0 0-.166.076l-.754.785-.842-1.7a.25.25 0 0 0-.182-.134Z"/></svg>
-      </div>
-      <div class="sec-title">技能</div>
-      <div class="sec-line"></div>
-    </div>
-
-    <div class="skills-grid">
-      <div>
-        <div class="skill-item">
-          <div class="skill-head"><span class="skill-name">Python（生信 / 数据分析）</span><span class="skill-pct"><span class="fill">80 %</span></span></div>
-          <div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div>
-        </div>
-        <div class="skill-item" style="margin-top:12px">
-          <div class="skill-head"><span class="skill-name">R（统计 / 可视化）</span><span class="skill-pct"><span class="fill">70 %</span></span></div>
-          <div class="skill-bar"><div class="skill-fill" style="width:65%"></div></div>
-        </div>
-        <div class="skill-item" style="margin-top:12px">
-          <div class="skill-head"><span class="skill-name">发育生物学</span><span class="skill-pct"><span class="fill">75 %</span></span></div>
-          <div class="skill-bar"><div class="skill-fill" style="width:70%"></div></div>
-        </div>
-      </div>
-      <div>
-        <div class="skill-item">
-          <div class="skill-head"><span class="skill-name">分子生物学</span><span class="skill-pct"><span class="fill">90 %</span></span></div>
-          <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
-        </div>
-        <div class="skill-item" style="margin-top:12px">
-          <div class="skill-head"><span class="skill-name">英语（学术写作）</span><span class="skill-pct"><span class="fill">85 %</span></span></div>
-          <div class="skill-bar"><div class="skill-fill" style="width:72%"></div></div>
-        </div>
-        <div class="skill-item" style="margin-top:12px">
-          <div class="skill-head"><span class="skill-name">神经科学</span></span><span class="skill-pct"><span class="fill">70 %</span></span></div>
-          <div class="skill-bar"><div class="skill-fill" style="width:60%"></div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ══ 兴趣爱好 ══ -->
-  <div class="section">
-    <div class="sec-head">
-      <div class="sec-icon">
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="white"><path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.418-3.51 6.791-7.396 10.191a.703.703 0 0 1-.208.149.707.707 0 0 1-.396 0 .703.703 0 0 1-.208-.149C4.51 11.71 1 8.338 1 4.92 1 2.755 2.79 1 4 1z"/></svg>
-      </div>
-      <div class="sec-title">兴趣爱好</div>
-      <div class="sec-line"></div>
-    </div>
-
-    <div class="hobby-grid">
-
-      <div class="hobby-card">
-        <span class="hobby-icon">📐</span>
-        <div class="hobby-name">数学</div>
-        <div class="hobby-desc">
-          热爱分析与代数，享受用数学语言描述生物系统的过程。
-         补充具体方向，如：微分方程、线代</span>
-        </div>
-      </div>
-
-      <div class="hobby-card">
-        <span class="hobby-icon">🧬</span>
-        <div class="hobby-name">生物信息学</div>
-        <div class="hobby-desc">
-          用代码探索基因组与转录组，相信数据中藏着疾病的答案。</span>
-        </div>
-      </div>
-
-      <div class="hobby-card">
-        <span class="hobby-icon">🩷</span>
-        <div class="hobby-name">爱好</div>
-        <div class="hobby-desc">
-          乒乓球、游泳、钢琴、跑步、中国象棋、单板滑雪、高尔夫…</span>
-        </div>
-      </div>
-
-      <div class="hobby-card">
-        <span class="hobby-icon">🗺️</span>
-        <div class="hobby-name">旅游</div>
-        <div class="hobby-desc">
-         享受不同地点的风景、不同时代的人生与不同文化的精神</span>
-        </div>
-      </div>
-
-      <div class="hobby-card">
-        <span class="hobby-icon">📚</span>
-        <div class="hobby-name">阅读</div>
-        <div class="hobby-desc">
-          偏爱科学史、人物传记与哲学类读物。
-         最近在读：《我看见的世界——李飞飞自传》《自我突围（施一公）》</span>
-        </div>
-      </div>
-
-      <div class="hobby-card">
-        <span class="hobby-icon">📖</span>
-        <div class="hobby-name">选修课/旁听</div>
-        <div class="hobby-desc">
-          《文学中的爱情》（26春）《地震概论》（25秋）《中国历史地理》（25春）《政治学原理》（24秋）</span>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- ══ 日常分享 ══ -->
-  <div class="section">
-    <div class="sec-head">
-      <div class="sec-icon">
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="white"><path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/></svg>
-      </div>
-      <div class="sec-title">日常分享</div>
-      <div class="sec-line"></div>
-    </div>
-
-    <div class="posts-grid">
-
-      <div class="post-card">
-        <div class="post-date">2024-09-29</div>
-        <div class="post-title">随笔：初入燕园的第一个月</div>
-        <div class="post-excerpt">
-          燕园：大雨时是淹园，晴天时是颜园；春天时是艳园，秋天时是嫣园。
-        </div>
-        <span class="post-tag tag-red">🏥 医学生活</span>
-      </div>
-
-      <div class="post-card">
-        <div class="post-date"> 2025-09-03</div>
-        <div class="post-title">用 R 画出我第一张散点图</div>
-        <div class="post-excerpt">
-          第一次学习R语言，打开生信新世界。
-        </div>
-        <span class="post-tag tag-teal">📊 生信笔记</span>
-      </div>
-
-      <div class="post-card">
-        <div class="post-date">2026-02-22</div>
-        <div class="post-title">读《你当像鸟飞向你的山》有感</span></div>
-        <div class="post-excerpt">
-          不同的人适合不同的时代，不同的时代造就不同的人，可时代无法选择人，人也无法选择时代。
-        </div>
-        <span class="post-tag tag-gold">📖 读书笔记</span>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- ══ 联系我 ══ -->
-  <div class="section">
-    <div class="sec-head">
-      <div class="sec-icon">
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="white"><path d="M1.75 2h12.5c.966 0 1.75.784 1.75 1.75v8.5A1.75 1.75 0 0 1 14.25 14H1.75A1.75 1.75 0 0 1 0 12.25v-8.5C0 2.784.784 2 1.75 2ZM1.5 12.251c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V5.809L8.38 9.397a.75.75 0 0 1-.76 0L1.5 5.809v6.442Zm13-8.181v-.32a.25.25 0 0 0-.25-.25H1.75a.25.25 0 0 0-.25.25v.32L8 7.88Z"/></svg>
-      </div>
-      <div class="sec-title">联系我</div>
-      <div class="sec-line"></div>
-    </div>
-
-    <div class="contact-row">
-      <a class="contact-btn" href="mailto:">
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M1.75 2h12.5c.966 0 1.75.784 1.75 1.75v8.5A1.75 1.75 0 0 1 14.25 14H1.75A1.75 1.75 0 0 1 0 12.25v-8.5C0 2.784.784 2 1.75 2ZM1.5 12.251c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V5.809L8.38 9.397a.75.75 0 0 1-.76 0L1.5 5.809v6.442Zm13-8.181v-.32a.25.25 0 0 0-.25-.25H1.75a.25.25 0 0 0-.25.25v.32L8 7.88Z"/></svg>
-        1989293588@qq.com
-      </a>
-      <a class="contact-btn" href="https://github.com/YiaZHU" target="_blank">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-        GitHub：YiaZHU
-      </a>
-      <a class="contact-btn" href="https://mp.weixin.qq.com/s/dsshzrSos8X3jVv54BzOZQ" target="_blank">
-        💬 公众号:ChattyGlimmer
-      </a>
-    </div>
-  </div>
-
-  <!-- Footer -->
-  <div class="footer">
-    <div style="font-size:1.1rem; margin-bottom:6px; color:var(--red);">未名湖畔 · 医路前行</div>
-   朱毅煊· 北京大学基础医学院 · <span id="yr"></span>
-  </div>
-
-</div>
+  <div class="footer__right">© <span id="yr"></span> YiaZHU. All rights reserved.</div>
+</footer>
 
 <script>
+  // Year
   document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // Theme toggle
+  const html = document.documentElement;
+  const moon = document.getElementById('iconMoon');
+  const sun = document.getElementById('iconSun');
+  const saved = localStorage.getItem('theme') || 'dark';
+  html.setAttribute('data-theme', saved);
+  updateThemeIcon(saved);
+
+  document.getElementById('themeToggle').addEventListener('click', () => {
+    const cur = html.getAttribute('data-theme');
+    const next = cur === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+    updateThemeIcon(next);
+  });
+
+  function updateThemeIcon(theme) {
+    if (theme === 'dark') { moon.style.display = ''; sun.style.display = 'none'; }
+    else { moon.style.display = 'none'; sun.style.display = ''; }
+  }
+
+  // Mobile nav
+  document.getElementById('navToggle').addEventListener('click', () => {
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+  document.querySelectorAll('.nav__links a').forEach(a => {
+    a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+  });
+
+  // Scroll reveal
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        if (e.target.classList.contains('skill-row')) {
+          const pct = e.target.dataset.pct;
+          const fill = e.target.querySelector('.skill-row__fill');
+          setTimeout(() => { fill.style.width = pct + '%'; }, 100);
+        }
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+  document.querySelectorAll('.skill-row').forEach(el => revealObs.observe(el));
+
+  // Nav active state
+  const navLinks = document.querySelectorAll('.nav__links a[data-nav]');
+  const sections = {};
+  navLinks.forEach(a => { sections[a.dataset.nav] = document.getElementById(a.dataset.nav); });
+
+  const navObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(a => a.classList.remove('active'));
+        const active = document.querySelector(`.nav__links a[data-nav="${e.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { threshold: 0.25 });
+
+  Object.values(sections).forEach(s => { if (s) navObs.observe(s); });
 </script>
 </body>
 </html>
